@@ -1,0 +1,35 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Feature Distribution Across Attack Families (Log1p Scale)}}{15}{}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Class Distribution}}{16}{}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Feature Correlation Matrix (sample n=15,000)}}{17}{}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Key Feature Distributions by Attack Type}}{18}{}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Packet Length Mean Distribution by Attack Class}}{19}{}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Flow Duration Distribution by Attack Class (Log Scale)}}{20}{}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Flowchart of Random Forest}}{21}{}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Flowchart of XGBoost}}{22}{}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Project Pipeline}}{23}{}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Feature Selection and Preprocessing}}{28}{}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Scaling and Label Encoding}}{29}{}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Train Test Split}}{30}{}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Class-Weight Adjustment Code}}{30}{}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Random Forest Code}}{31}{}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces XGBoost Code}}{32}{}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Ensemble Code}}{33}{}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Top 20 Random Forest Feature Importances}}{34}{}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Classification Report Code}}{34}{}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Confusion Matrix Code}}{35}{}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Confusion Matrix - Ensemble (Test Set)}}{37}{}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Per-Class Classification Metrics Heatmap - Ensemble}}{38}{}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Detailed Flow Inspection and Class Probability Distribution}}{41}{}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Real-Time Network Intrusion Monitoring Dashboard}}{42}{}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Git Repository}}{43}{}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
