@@ -11,7 +11,7 @@
 \contentsline {section}{\numberline {3.1}Analysis of the Dataset}{10}{}%
 \contentsline {subsection}{\numberline {3.1.1}About the Dataset}{10}{}%
 \contentsline {subsection}{\numberline {3.1.2}Explore the Dataset}{11}{}%
-\contentsline {section}{\numberline {3.2}Data Preprocessing}{12}{}%
+\contentsline {section}{\numberline {3.2}Data Preprocessing}{11}{}%
 \contentsline {subsection}{\numberline {3.2.1}Data Cleaning}{12}{}%
 \contentsline {subsection}{\numberline {3.2.2}Analysis of Feature Variables}{12}{}%
 \contentsline {subsection}{\numberline {3.2.3}Analysis of Class Variables}{14}{}%

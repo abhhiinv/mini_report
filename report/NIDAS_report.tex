@@ -60,6 +60,16 @@ headheight=16pt
 \setlist{itemsep=1.5pt, parsep=0pt, topsep=3pt, partopsep=0pt}
 \setlist[itemize]{itemsep=1.5pt, parsep=0pt, topsep=3pt, partopsep=0pt}
 \setlist[enumerate]{itemsep=1.5pt, parsep=0pt, topsep=3pt, partopsep=0pt}
+
+%--------------------------------
+% Table of Contents & Lists Spacing
+%--------------------------------
+\usepackage[titles]{tocloft}
+\setlength{\cftbeforechapskip}{6pt}      % Gap before chapter entries in TOC
+\setlength{\cftbeforesecskip}{2pt}       % Gap before section entries in TOC
+\setlength{\cftbeforesubsecskip}{1pt}    % Gap before subsection entries in TOC
+\setlength{\cftbeforefigskip}{3pt}       % Gap between figure entries in LOF
+\setlength{\cftbeforetabskip}{3pt}       % Gap between table entries in LOT
 %--------------------------------
 % Header & Footer
 %--------------------------------
@@ -487,29 +497,29 @@ This project proposes to close this gap by integrating a real-time alerting mech
 
 To establish a resilient intrusion detection system capable of mitigating domain-specific vulnerabilities, this project integrates two widely recognized benchmark datasets developed by the Canadian Institute for Cybersecurity: CIC-IDS2017 and CSE-CIC-IDS2018. Both datasets simulate realistic enterprise network traffic containing diverse, state-of-the-art attack executions alongside normal background user activity, captured using the network traffic profiling tool CICFlowMeter.
 
-The CIC-IDS2017 benchmark comprises eight raw CSV captures totaling 2,830,743 network flow records across 79 columns. The CSE-CIC-IDS2018 benchmark, collected in a collaborative effort between the Communications Security Establishment (CSE) and the Canadian Institute for Cybersecurity (CIC) on AWS infrastructure, encompasses six targeted attack captures used in this study (BruteForce, BruteForce2, BruteForceSSH, DDoS, DoS, and DoS2) totaling 6,291,449 raw flow records across 80 columns. To harmonize the two heterogeneous schemas, abbreviated column headers in the 2018 dataset (e.g., \texttt{Dst Port}, \texttt{Tot Fwd Pkts}, \texttt{Pkt Len Mean}) were systematically mapped to the standardized naming conventions of CIC-IDS2017. Internal repeated header lines and non-flow metadata attributes (\texttt{Protocol} and \texttt{Timestamp}) were excluded, yielding a combined pre-cleaning corpus of 9,117,071 flow records across 77 shared numeric features.
+The CIC-IDS2017 benchmark comprises eight raw CSV captures totaling 2,830,743 network flow records across 79 columns. The CSE-CIC-IDS2018 benchmark, collected in a collaborative effort between the Communications Security Establishment (CSE) and the Canadian Institute for Cybersecurity (CIC) on AWS infrastructure, encompasses six targeted attack captures used in this study (BruteForce, BruteForce2, BruteForceSSH, DDoS, DoS, and DoS2) totaling 6,291,449 raw flow records across 80 columns. To harmonize the two heterogeneous schemas, abbreviated column headers in the 2018 dataset (e.g., Dst Port, Tot Fwd Pkts, Pkt Len Mean) were systematically mapped to the standardized naming conventions of CIC-IDS2017. Internal repeated header lines and non-flow metadata attributes (Protocol and Timestamp) were excluded, yielding a combined pre-cleaning corpus of 9,117,071 flow records across 77 shared numeric features.
 
 The raw multiclass labels across both datasets were consolidated into five harmonized traffic categories:
 \begin{itemize}
-    \item \textbf{Normal Traffic:} Merging \texttt{BENIGN} from CIC-IDS2017 and \texttt{benign} from CSE-CIC-IDS2018.
-    \item \textbf{Denial of Service (DoS):} Aggregating \texttt{DoS Hulk}, \texttt{DoS GoldenEye}, \texttt{DoS slowloris}, and \texttt{DoS Slowhttptest} from 2017 with \texttt{dos attacks-goldeneye}, \texttt{dos attacks-slowloris}, \texttt{dos attacks-hulk}, and \texttt{dos attacks-slowhttptest} from 2018.
-    \item \textbf{Distributed Denial of Service (DDoS):} Combining \texttt{DDoS} from 2017 with \texttt{ddos attacks-loic-http}, \texttt{ddos attack-loic-udp}, and \texttt{ddos attack-hoic} from 2018.
-    \item \textbf{Brute Force:} Unifying credential-guessing attacks including \texttt{FTP-Patator} and \texttt{SSH-Patator} from 2017 with \texttt{ftp-bruteforce} and \texttt{ssh-bruteforce} from 2018.
-    \item \textbf{Port Scan:} Incorporating port scanning probe activity (\texttt{PortScan} from 2017).
+    \item \textbf{Normal Traffic:} Merging BENIGN from CIC-IDS2017 and benign from CSE-CIC-IDS2018.
+    \item \textbf{Denial of Service (DoS):} Aggregating DoS Hulk, DoS GoldenEye, DoS slowloris, and DoS Slowhttptest from 2017 with dos attacks-goldeneye, dos attacks-slowloris, dos attacks-hulk, and dos attacks-slowhttptest from 2018.
+    \item \textbf{Distributed Denial of Service (DDoS):} Combining DDoS from 2017 with ddos attacks-loic-http, ddos attack-loic-udp, and ddos attack-hoic from 2018.
+    \item \textbf{Brute Force:} Unifying credential-guessing attacks including FTP-Patator and SSH-Patator from 2017 with ftp-bruteforce and ssh-bruteforce from 2018.
+    \item \textbf{Port Scan:} Incorporating port scanning probe activity (PortScan from 2017).
 \end{itemize}
 Peripheral attack categories outside these five focus domains (such as Bot, Infiltration, Web Attacks, and Heartbleed) were excluded, resulting in a cohesive multi-class dataset tailored for tabular machine learning algorithms.
 
 \subsection{Explore the Dataset}
 
-The combined dataset initially encompasses 9,117,071 flow records across 77 numeric features and two tracking attributes (\texttt{Attack Type} and \texttt{Source}). Statistical profiling of the combined corpus revealed several critical data hygiene and distribution challenges:
+The combined dataset initially encompasses 9,117,071 flow records across 77 numeric features and two tracking attributes (Attack Type and Source). Statistical profiling of the combined corpus revealed several critical data hygiene and distribution challenges:
 \begin{itemize}
-    \item \textbf{Constant Features:} Eight feature columns exhibited zero variance across all 9.1 million records: \texttt{Bwd PSH Flags}, \texttt{Bwd URG Flags}, \texttt{Fwd Avg Bytes/Bulk}, \texttt{Fwd Avg Packets/Bulk}, \texttt{Fwd Avg Bulk Rate}, \texttt{Bwd Avg Bytes/Bulk}, \texttt{Bwd Avg Packets/Bulk}, and \texttt{Bwd Avg Bulk Rate}. Carrying no discriminative signal, these columns were slated for immediate removal, reducing the feature space to 69 numerical dimensions.
-    \item \textbf{Missing and Infinite Values:} A total of 26,026 records contained infinite or NaN values in rate-dependent features (\texttt{Flow Bytes/s} and \texttt{Flow Packets/s}), caused by zero-duration flows dividing by zero time increments. These corrupted records represent under 0.29\% of the raw corpus and were removed.
+    \item \textbf{Constant Features:} Eight feature columns exhibited zero variance across all 9.1 million records: Bwd PSH Flags, Bwd URG Flags, Fwd Avg Bytes/Bulk, Fwd Avg Packets/Bulk, Fwd Avg Bulk Rate, Bwd Avg Bytes/Bulk, Bwd Avg Packets/Bulk, and Bwd Avg Bulk Rate. Carrying no discriminative signal, these columns were slated for immediate removal, reducing the feature space to 69 numerical dimensions.
+    \item \textbf{Missing and Infinite Values:} A total of 26,026 records contained infinite or NaN values in rate-dependent features (Flow Bytes/s and Flow Packets/s), caused by zero-duration flows dividing by zero time increments. These corrupted records represent under 0.29\% of the raw corpus and were removed.
     \item \textbf{Duplicate Records:} An extensive deduplication pass identified 2,263,887 duplicate flow records (approximately 24.9\% of valid rows). Removing these duplicates reduced the corpus to 6,827,158 unique records, preventing artificial inflation of model metrics and data leakage between train and test splits.
     \item \textbf{Severe Class Imbalance:} Among the 6,827,158 unique flows, benign background traffic heavily predominated with 5,914,415 records (86.63\%), compared to 390,200 DoS records (5.72\%), 328,605 DDoS records (4.81\%), 103,244 Brute Force records (1.51\%), and 90,694 Port Scan records (1.33\%).
 \end{itemize}
 
-Descriptive statistics across the unified flow metrics highlight stark distributional skews. \texttt{Flow Duration} spans from 0 to 120 million microseconds with a low median, reflecting that the vast majority of legitimate and probe flows are short-lived, whereas DoS and slowloris attacks sustain extended connection durations. Packet length metrics exhibit strong bimodal tendencies: probe and scanning vectors concentrate near minimal payload thresholds (e.g., 3 to 6 bytes), whereas high-volume DDoS flooding attacks generate large payloads (mean exceeding 700 bytes).
+Descriptive statistics across the unified flow metrics highlight stark distributional skews. Flow Duration spans from 0 to 120 million microseconds with a low median, reflecting that the vast majority of legitimate and probe flows are short-lived, whereas DoS and slowloris attacks sustain extended connection durations. Packet length metrics exhibit strong bimodal tendencies: probe and scanning vectors concentrate near minimal payload thresholds (e.g., 3 to 6 bytes), whereas high-volume DDoS flooding attacks generate large payloads (mean exceeding 700 bytes).
 
 \section{Data Preprocessing}
 
@@ -523,7 +533,7 @@ A systematic five-stage data cleaning and preparation pipeline was applied to en
     \item \textbf{Zero-Variance Column Removal:} The 8 constant columns identified during exploration were dropped, retaining 69 informative numeric features.
     \item \textbf{Infinity and Null Value Cleaning:} All infinite values ($\pm\infty$) were converted to NaN, and the 26,026 affected rows were eliminated, leaving 9,091,045 clean records.
     \item \textbf{Deduplication:} Exact duplicate rows across the feature space were purged, eliminating 2,263,887 records and yielding 6,827,158 unique flow records.
-    \item \textbf{Benign Subsampling and Class Balancing:} In the unique corpus, Normal Traffic accounted for over 5.91 million records (86.6\%). Retaining all benign records would induce severe majority-class bias and excessive training overhead without adding behavioral variance. Consequently, Normal Traffic was randomly subsampled at 15\% (887,162 records) and combined with 100\% of all attack records (912,743 flows). This produced a balanced, highly representative dataset of \textbf{1,799,905 records} composed of:
+    \item \textbf{Benign Subsampling and Class Balancing:} In the unique corpus, Normal Traffic accounted for over 5.91 million records (86.6\%). Retaining all benign records would induce severe majority-class bias and excessive training overhead without adding behavioral variance. Consequently, Normal Traffic was randomly subsampled at 15\% (887,162 records) and combined with 100\% of all attack records (912,743 flows). This produced a balanced, highly representative dataset of 1,799,905 records composed of:
     \begin{itemize}
         \item Normal Traffic: 887,162 records (49.29\%)
         \item DoS: 390,200 records (21.68\%)
@@ -532,12 +542,12 @@ A systematic five-stage data cleaning and preparation pipeline was applied to en
         \item Port Scan: 90,694 records (5.04\%)
     \end{itemize}
     In terms of dataset origin, CSE-CIC-IDS2018 contributed 1,064,113 flows (59.12\%) and CIC-IDS2017 contributed 735,792 flows (40.88\%), ensuring robust cross-environment representation.
-    \item \textbf{Categorical Label Encoding:} The target categorical variable (\texttt{Attack Type}) was mapped to integers using scikit-learn's \texttt{LabelEncoder}, assigning integer indices $0$ to $4$ corresponding to Brute Force, DDoS, DoS, Normal Traffic, and Port Scan.
+    \item \textbf{Categorical Label Encoding:} The target categorical variable (Attack Type) was mapped to integers using scikit-learn's LabelEncoder, assigning integer indices $0$ to $4$ corresponding to Brute Force, DDoS, DoS, Normal Traffic, and Port Scan.
 \end{enumerate}
 
 \subsection{Analysis of Feature Variables}
 
-The unified dataset contains 69 candidate numeric features after removing zero-variance columns. Following the cleaning, feature selection, and domain-refinement pipeline, \textbf{40 features} are retained for model training and deployment. These can be grouped into the following categories based on the aspect of network flow behaviour they capture.
+The unified dataset contains 69 candidate numeric features after removing zero-variance columns. Following the cleaning, feature selection, and domain-refinement pipeline, 40 features are retained for model training and deployment. These can be grouped into the following categories based on the aspect of network flow behaviour they capture.
 
 Packet length features capture the size characteristics of packets in both forward (client-to-server) and backward (server-to-client) directions, including maximum, minimum, mean, and standard deviation values. Feature importance analysis identifies this group as the strongest family of discriminative features, with Bwd Packet Length Mean, Packet Length Std, Bwd Packet Length Std, and Fwd Packet Length Mean exhibiting high discriminative capacity. These features are particularly discriminative for DoS and DDoS attacks, which generate packets of characteristic sizes at high rates.
 
@@ -555,12 +565,12 @@ Active and Idle time features capture the periods of activity and inactivity wit
 
 Feature selection and refinement were executed in four stages:
 \begin{enumerate}
-    \item \textbf{Collinearity Filtering ($r > 0.98$):} Pearson correlation analysis evaluated on a stratified 50,000-sample subset revealed strong linear dependencies among subflow counters, bidirectional segment statistics, and forward/backward duplicates. Seventeen redundant features were pruned: \texttt{Fwd IAT Total}, \texttt{Subflow Fwd Packets}, \texttt{Subflow Bwd Packets}, \texttt{Subflow Fwd Bytes}, \texttt{Subflow Bwd Bytes}, \texttt{Avg Fwd Segment Size}, \texttt{Avg Bwd Segment Size}, \texttt{Fwd PSH Flags}, \texttt{Fwd URG Flags}, \texttt{Fwd Header Length.1}, \texttt{ECE Flag Count}, \texttt{Average Packet Size}, \texttt{Fwd IAT Max}, \texttt{Fwd Packets/s}, \texttt{Idle Max}, \texttt{Idle Min}, and \texttt{Down/Up Ratio}. This reduced the feature space from 69 to 53 features.
-    \item \textbf{Kruskal-Wallis Hypothesis Testing:} A non-parametric Kruskal-Wallis $H$-test evaluated whether each feature exhibited statistically significant distribution differences across the five target classes. \texttt{CWE Flag Count} failed to demonstrate significance ($p = 0.612 > 0.05$) and was removed, reducing the feature space to 52 features.
-    \item \textbf{Random Forest Feature Importance Pruning:} A Random Forest classifier was fitted on the sample to compute Gini impurity-based feature importances. Features falling within the bottom 10\% quantile were eliminated: \texttt{URG Flag Count}, \texttt{Active Mean}, \texttt{Active Min}, \texttt{Idle Std}, \texttt{Active Std}, and \texttt{SYN Flag Count}, yielding 46 candidate features.
-    \item \textbf{Domain Generalization and Redundancy Pruning:} Prior to model training, six additional features were eliminated: \texttt{Destination Port} (pruned to prevent shortcut learning and overfitting to static port numbers, ensuring port-agnostic generalization), \texttt{Packet Length Variance} (exact mathematical collinearity with \texttt{Packet Length Std}), \texttt{Total Length of Bwd Packets}, \texttt{Bwd Packet Length Min}, \texttt{Fwd IAT Mean}, and \texttt{Bwd IAT Mean} (which showed high multi-collinearity with overall flow timing and packet statistics).
+    \item \textbf{Collinearity Filtering ($r > 0.98$):} Pearson correlation analysis evaluated on a stratified 50,000-sample subset revealed strong linear dependencies among subflow counters, bidirectional segment statistics, and forward/backward duplicates. Sixteen redundant collinear features were pruned: Fwd IAT Total, Subflow Fwd Packets, Subflow Bwd Packets, Subflow Fwd Bytes, Subflow Bwd Bytes, Avg Fwd Segment Size, Avg Bwd Segment Size, Fwd PSH Flags, Fwd URG Flags, ECE Flag Count, Average Packet Size, Fwd IAT Max, Fwd Packets/s, Idle Max, Idle Min, and Down/Up Ratio. This reduced the feature space from 69 to 53 features.
+    \item \textbf{Kruskal-Wallis Hypothesis Testing:} A non-parametric Kruskal-Wallis $H$-test evaluated whether each feature exhibited statistically significant distribution differences across the five target classes. CWE Flag Count failed to demonstrate significance ($p = 0.612 > 0.05$) and was removed, reducing the feature space to 52 features.
+    \item \textbf{Random Forest Feature Importance Pruning:} A Random Forest classifier was fitted on the sample to compute Gini impurity-based feature importances. Features falling within the bottom 10\% quantile were eliminated: URG Flag Count, Active Mean, Active Min, Idle Std, Active Std, and SYN Flag Count, yielding 46 candidate features.
+    \item \textbf{Domain Generalization and Redundancy Pruning:} Prior to model training, six additional features were eliminated: Destination Port (pruned to prevent shortcut learning and overfitting to static port numbers, ensuring port-agnostic generalization), Packet Length Variance (exact mathematical collinearity with Packet Length Std), Total Length of Bwd Packets, Bwd Packet Length Min, Fwd IAT Mean, and Bwd IAT Mean (which showed high multi-collinearity with overall flow timing and packet statistics).
 \end{enumerate}
-This rigorous pruning process established the final, high-impact set of \textbf{40 features} used for model training, offline evaluation, and live inference. Feature scaling using \texttt{RobustScaler} was fitted exclusively on the training split to standardize features with wide dynamic ranges and heavy-tailed distributions while providing resilience against extreme network burst outliers, followed by discriminative feature weighting.
+This rigorous pruning process established the final, high-impact set of 40 features used for model training, offline evaluation, and live inference. Feature scaling using RobustScaler was fitted exclusively on the training split to standardize features with wide dynamic ranges and heavy-tailed distributions while providing resilience against extreme network burst outliers, followed by discriminative feature weighting.
 
 \subsection{Analysis of Class Variables}
 
@@ -634,7 +644,7 @@ Figure~\ref{fig:flow_dur_dist} shows box plots of Flow Duration on a log1p scale
 
 Random Forest is an ensemble learning method that constructs a large number of decision trees during training and outputs the class with the highest aggregated vote (for classification) across all trees. Each tree is trained on a bootstrap sample of the training data, and at each split, only a random subset of features is considered as candidates for the split criterion. This combination of data bagging and feature randomization reduces the variance of the ensemble compared to any individual tree and makes the model robust to overfitting, even on high-dimensional datasets such as the unified benchmark with 40 features.
 
-Strengths: handles mixed feature scales without requiring normalization; naturally produces feature importance scores; robust to noisy or redundant features; scales efficiently to large datasets via parallel tree construction (\texttt{n\_jobs=-1}).
+Strengths: handles mixed feature scales without requiring normalization; naturally produces feature importance scores; robust to noisy or redundant features; scales efficiently to large datasets via parallel tree construction (n\_jobs=-1).
 
 Justification: Ness et al.\ (2025), in a multi-model comparison on network traffic anomaly detection, demonstrated that tree-based ensemble methods consistently outperform single-model classifiers on structured network flow data. Fathima et al.\ (2024) validate their hybrid detection framework on the CIC-IDS2017 dataset, the same benchmark used here, directly supporting Random Forest's inclusion as a base learner.
 
@@ -649,7 +659,7 @@ Justification: Ness et al.\ (2025), in a multi-model comparison on network traff
 
 Extreme Gradient Boosting (XGBoost) is a gradient boosting framework that builds an ensemble of decision trees sequentially, where each successive tree is trained to correct the residual errors of the previous ensemble. Unlike Random Forest, which builds trees independently in parallel, XGBoost applies a gradient descent optimization procedure in function space, minimizing a regularized loss function at each step. L1 and L2 regularization terms in its objective function additionally control overfitting.
 
-Strengths: superior performance on structured/tabular data due to boosting-based bias reduction; built-in regularization; supports GPU-accelerated training via \texttt{tree\_method='hist'}; native handling of multi-class classification via softmax objective (\texttt{eval\_metric='mlogloss'}).
+Strengths: superior performance on structured/tabular data due to boosting-based bias reduction; built-in regularization; supports GPU-accelerated training via tree\_method='hist'; native handling of multi-class classification via softmax objective (eval\_metric='mlogloss').
 
 Justification: Ness et al.\ (2025) evaluated XGBoost directly against four other models on network traffic anomaly detection, finding it among the strongest individual classifiers with a test accuracy of 0.83 and F1-score of 0.84. Ji C et al.\ (2025), evaluated on the same CIC-IDS2017 dataset, provide a direct performance reference point: their GRU-ResCBANet model achieved 99.79\% multi-class accuracy, against which the ensemble's results can be situated.
 
@@ -684,24 +694,24 @@ The NIDAS system is organised into seven functional stages, from raw traffic acq
 \begin{enumerate}[leftmargin=*]
     \item \textbf{Data Acquisition:} The system integrates 9,117,071 raw flow records from the CIC-IDS2017 and CSE-CIC-IDS2018 benchmarks, capturing 77 initial numeric flow characteristics and target metadata. After deduplication, cleaning, and subsampling, a curated benchmark of 1,799,905 flow records is established (59.12\% from 2018 and 40.88\% from 2017) to provide robust multi-environment representation. In deployment, a custom Python CICFlowMeter engine captures live packets from network sockets/PCAP and extracts the identical 40 bidirectional flow features in real time.
     
-    \item \textbf{Data Preprocessing and Preparation:} The raw corpus undergoes zero-variance removal (dropping 8 constant features, reducing 77 to 69 dimensions), conversion of $\pm\infty$ values to NaN and dropping of 26,026 corrupted rows, and deduplication of 2,263,887 duplicate records. Labels are harmonized into five core classes (Normal Traffic, DoS, DDoS, Brute Force, and Port Scan) while peripheral attack classes are excluded. Benign records are subsampled at 15\% (887,162 flows) and merged with 100\% of attack records. A four-stage feature refinement process ($69 \rightarrow 53 \rightarrow 52 \rightarrow 46 \rightarrow 40$) eliminates collinear and domain-sensitive features. Categorical labels are encoded using \texttt{LabelEncoder} ($0$--$4$), inputs are normalized using \texttt{RobustScaler} fitted exclusively on the training split, and discriminative feature weights ($3.0\times$, $2.0\times$, $1.0\times$) and balanced sample weights are computed.
+    \item \textbf{Data Preprocessing and Preparation:} The raw corpus undergoes zero-variance removal (dropping 8 constant features, reducing 77 to 69 dimensions), conversion of $\pm\infty$ values to NaN and dropping of 26,026 corrupted rows, and deduplication of 2,263,887 duplicate records. Labels are harmonized into five core classes (Normal Traffic, DoS, DDoS, Brute Force, and Port Scan) while peripheral attack classes are excluded. Benign records are subsampled at 15\% (887,162 flows) and merged with 100\% of attack records. A four-stage feature refinement process ($69 \rightarrow 53 \rightarrow 52 \rightarrow 46 \rightarrow 40$) eliminates collinear and domain-sensitive features. Categorical labels are encoded using LabelEncoder ($0$--$4$), inputs are normalized using RobustScaler fitted exclusively on the training split, and discriminative feature weights ($3.0\times$, $2.0\times$, $1.0\times$) and balanced sample weights are computed.
     
-    \item \textbf{Train / Model Building (Ensemble):} An 80\% stratified training partition ($\approx 1.44$ million flows) is used to train the base estimators. Random Forest (200 trees, \texttt{max\_depth=10}, \texttt{max\_features=0.4}) and XGBoost (300 estimators, \texttt{max\_depth=6}, \texttt{learning\_rate=0.1}, GPU histogram method) are fitted independently using the precomputed balanced sample weights on the weighted feature space. The soft-voting ensemble is constructed by combining the pre-fitted estimators to compute probability averages across both models. Serialized model artifacts (\texttt{ensemble\_model.pkl}, \texttt{scaler.pkl}, \texttt{label\_encoder.pkl}, and \texttt{feature\_weights.pkl}) are generated.
+    \item \textbf{Train / Model Building (Ensemble):} An 80\% stratified training partition ($\approx 1.58$ million flows) is used to train the base estimators. Random Forest (200 trees, max\_depth=10, max\_features=0.4) and XGBoost (300 estimators, max\_depth=6, learning\_rate=0.1, GPU histogram method) are fitted independently using the precomputed balanced sample weights on the weighted feature space. The soft-voting ensemble is constructed by combining the pre-fitted estimators to compute probability averages across both models. Serialized model artifacts (ensemble\_model.pkl, scaler.pkl, label\_encoder.pkl, and feature\_weights.pkl) are generated.
     
     \item \textbf{Model Evaluation and Comparison:} The trained ensemble is evaluated on the held-out 20\% test partition (394,168 unseen flows). Comprehensive multi-class evaluation metrics are computed, including overall Accuracy (99.94\%), Macro F1 (0.9994), Weighted F1 (0.9994), per-class Precision, Recall, and F1-scores, as well as operational False Positive Rates (0.021\% on benign traffic) and False Negative Rates. Standalone Random Forest and XGBoost baselines are benchmarked against the soft-voting ensemble.
     
     \item \textbf{Final Model Saving:} The trained ensemble artifacts are serialized directly from the 80\% training split. To preserve empirical validity and prevent unverified data leakage, the models are not retrained on the full dataset, ensuring that all production artifacts strictly reflect the validated test partition boundaries.
     
-    \item \textbf{Deployment and Real-Time Prediction:} In the operational deployment pipeline, live network traffic is captured via network sockets. The custom CICFlowMeter reassembles packets into bidirectional flows, extracts the 40 flow features, and formats them in the exact column ordering expected by the model. The real-time preprocessing stage verifies finite values, applies the pre-fitted \texttt{RobustScaler}, scales features using the discriminative weight vector, and executes soft-voting inference across both base models to yield the predicted attack class and confidence score.
+    \item \textbf{Deployment and Real-Time Prediction:} In the operational deployment pipeline, live network traffic is captured via network sockets. The custom CICFlowMeter reassembles packets into bidirectional flows, extracts the 40 flow features, and formats them in the exact column ordering expected by the model. The real-time preprocessing stage verifies finite values, applies the pre-fitted RobustScaler, scales features using the discriminative weight vector, and executes soft-voting inference across both base models to yield the predicted attack class and confidence score.
     
-    \item \textbf{Alert Generation and System Output:} If the predicted class is anomalous, the system assigns a severity rating (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan). Telemetry is appended to a persistent audit log (\texttt{alert\_log.csv}) containing timestamps, predicted classes, severity ratings, individual model votes, and confidence scores. Real-time notifications and colored feeds are surfaced through a Terminal User Interface (TUI), with a modular pipeline designed for seamless integration with a future FastAPI WebSocket streaming backend and React JS dashboard.
+    \item \textbf{Alert Generation and System Output:} If the predicted class is anomalous, the system assigns a severity rating (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan). Telemetry is appended to a persistent audit log (alert\_log.csv) containing timestamps, predicted classes, severity ratings, individual model votes, and confidence scores. Real-time notifications and colored feeds are surfaced through a Terminal User Interface (TUI), with a modular pipeline designed for seamless integration with a future FastAPI WebSocket streaming backend and React JS dashboard.
 \end{enumerate}
 
 \section{Feasibility Analysis}
 
 \subsection{Technical Feasibility}
 
-The proposed system is technically feasible. All core components rely on mature, well-documented open-source libraries. The machine learning pipeline uses scikit-learn (\texttt{VotingClassifier}, \texttt{RandomForestClassifier}, \texttt{RobustScaler}, \texttt{LabelEncoder}) and XGBoost, both of which have stable APIs and extensive community support. The backend API is implemented in Python using FastAPI, a high-performance asynchronous web framework suitable for real-time data delivery. The frontend is built using React JS, a widely adopted component-based UI framework.
+The proposed system is technically feasible. All core components rely on mature, well-documented open-source libraries. The machine learning pipeline uses scikit-learn (VotingClassifier, RandomForestClassifier, RobustScaler, LabelEncoder) and XGBoost, both of which have stable APIs and extensive community support. The backend API is implemented in Python using FastAPI, a high-performance asynchronous web framework suitable for real-time data delivery. The frontend is built using React JS, a widely adopted component-based UI framework.
 
 The CIC-IDS2017 and CSE-CIC-IDS2018 datasets are publicly available from the Canadian Institute for Cybersecurity and have been widely benchmarked in academic research, confirming that they can be processed efficiently with standard data science tooling. The model training is performed on a local GPU-accelerated environment, and the trained artifacts are serialized for inference on standard hardware. The system does not require specialized hardware for deployment and can run on a standard laptop or desktop machine.
 
@@ -775,7 +785,7 @@ Operating System & Windows 11 \\
 \label{tab:hardware}
 \end{table}
 
-The GPU was utilised during XGBoost training via the \texttt{tree\_method='hist'} configuration, which leverages CUDA acceleration on supported NVIDIA hardware. Random Forest training was performed on the CPU using all available logical cores via \texttt{n\_jobs=-1}.
+The GPU was utilised during XGBoost training via the tree\_method='hist' configuration, which leverages CUDA acceleration on supported NVIDIA hardware. Random Forest training was performed on the CPU using all available logical cores via n\_jobs=-1.
 
 %------------------------------------------------------------------------------------------------------------------
 
@@ -797,7 +807,7 @@ The implementation code demonstrates a complete machine learning workflow for de
 \label{fig:feat_preproc}
 \end{figure}
 
-The numerical features are normalized using RobustScaler to mitigate the effect of extreme network burst outliers, followed by discriminative feature weighting, and the traffic categories are converted into numerical labels using LabelEncoder. The Random Forest and XGBoost classifiers are built using scikit-learn and XGBoost, and the trained ensemble, scaler and label encoder are saved as \texttt{ensemble\_model.pkl}, \texttt{scaler.pkl} and \texttt{label\_encoder.pkl} using joblib. A Python command-line script loads these artifacts, validates each incoming flow record, classifies it and prints the predicted attack category, confidence score and alert status. Detected attacks are appended to a persistent alert log (\texttt{alert\_log.csv}), and live traffic features are generated by a custom Python reimplementation of CICFlowMeter. Source code is managed using Git on a local Windows 11 machine.
+The numerical features are normalized using RobustScaler to mitigate the effect of extreme network burst outliers, followed by discriminative feature weighting, and the traffic categories are converted into numerical labels using LabelEncoder. The Random Forest and XGBoost classifiers are built using scikit-learn and XGBoost, and the trained ensemble, scaler and label encoder are saved as ensemble\_model.pkl, scaler.pkl and label\_encoder.pkl using joblib. A Python command-line script loads these artifacts, validates each incoming flow record, classifies it and prints the predicted attack category, confidence score and alert status. Detected attacks are appended to a persistent alert log (alert\_log.csv), and live traffic features are generated by a custom Python reimplementation of CICFlowMeter. Source code is managed using Git on a local Windows 11 machine.
 
 \begin{figure}[H]
 \centering
@@ -809,7 +819,7 @@ The numerical features are normalized using RobustScaler to mitigate the effect 
 
 \subsection{Model Planning}
 
-The preprocessed and balanced dataset is partitioned into an 80\% training set and a 20\% testing set using stratified sampling, ensuring that class proportions across all five traffic categories (Normal Traffic, DoS, DDoS, Brute Force, and Port Scan) are rigorously maintained across both splits. A fixed \texttt{random\_state} of 42 guarantees reproducibility across all evaluation runs. The held-out test split evaluates model generalizability under realistic multi-class network conditions.
+The preprocessed and balanced dataset is partitioned into an 80\% training set and a 20\% testing set using stratified sampling, ensuring that class proportions across all five traffic categories (Normal Traffic, DoS, DDoS, Brute Force, and Port Scan) are rigorously maintained across both splits. A fixed random\_state of 42 guarantees reproducibility across all evaluation runs. The held-out test split evaluates model generalizability under realistic multi-class network conditions.
 
 \begin{figure}[H]
 \centering
@@ -818,7 +828,7 @@ The preprocessed and balanced dataset is partitioned into an 80\% training set a
 \label{fig:train_test_split}
 \end{figure}
 
-To address class imbalance, balanced per-sample weights are computed using \texttt{compute\_sample\_weight(class\_weight='balanced', y=y\_train)}. This dynamically weights training records inversely proportional to their class frequency (assigning higher weights of 3.63 to Brute Force, 1.55 to Port Scan, 1.20 to DDoS, and 1.00 to DoS, while scaling the dominant Normal Traffic class to 0.44), compelling both classifiers to penalize minority attack errors heavily during training.
+To address class imbalance, balanced per-sample weights are computed using compute\_sample\_weight(class\_weight='balanced', y=y\_train). This dynamically weights training records inversely proportional to their class frequency (assigning higher weights of 3.63 to Brute Force, 1.55 to Port Scan, 1.20 to DDoS, and 1.00 to DoS, while scaling the dominant Normal Traffic class to 0.44), compelling both classifiers to penalize minority attack errors heavily during training.
 
 \begin{figure}[H]
 \centering
@@ -829,9 +839,9 @@ To address class imbalance, balanced per-sample weights are computed using \text
 
 \subsection{Training}
 
-Prior to training the estimators, discriminative feature weighting is applied to the RobustScaler-transformed feature space. Six high-importance features (\texttt{Flow Duration}, \texttt{Fwd Packet Length Mean}, \texttt{Bwd Packet Length Mean}, \texttt{Total Fwd Packets}, \texttt{Flow Bytes/s}, and \texttt{Total Length of Fwd Packets}) are scaled by a factor of $3.0\times$, while eleven medium-importance features (including packet length statistics, header lengths, and inter-arrival timing) are scaled by $2.0\times$, and all remaining features retain a weight of $1.0\times$. This feature weighting scheme amplifies the discriminative signal of the most informative flow attributes.
+Prior to training the estimators, discriminative feature weighting is applied to the RobustScaler-transformed feature space. Six high-importance features (Flow Duration, Fwd Packet Length Mean, Bwd Packet Length Mean, Total Fwd Packets, Flow Bytes/s, and Total Length of Fwd Packets) are scaled by a factor of $3.0\times$, while eleven medium-importance features (including packet length statistics, header lengths, and inter-arrival timing) are scaled by $2.0\times$, and all remaining features retain a weight of $1.0\times$. This feature weighting scheme amplifies the discriminative signal of the most informative flow attributes.
 
-The Random Forest classifier is initialized with \texttt{n\_estimators=200}, \texttt{max\_depth=10}, \texttt{min\_samples\_split=5}, \texttt{max\_features=0.4} and \texttt{n\_jobs=-1}. The model is fitted with the precomputed \texttt{sample\_weight} array on the weighted feature matrix.
+The Random Forest classifier is initialized with n\_estimators=200, max\_depth=10, min\_samples\_split=5, max\_features=0.4 and n\_jobs=-1. The model is fitted with the precomputed sample\_weight array on the weighted feature matrix.
 
 \begin{figure}[H]
 \centering
@@ -840,7 +850,7 @@ The Random Forest classifier is initialized with \texttt{n\_estimators=200}, \te
 \label{fig:rf_code}
 \end{figure}
 
-The XGBoost classifier is initialized with \texttt{n\_estimators=300}, \texttt{max\_depth=6}, \texttt{learning\_rate=0.1}, \texttt{subsample=0.8}, \texttt{colsample\_bytree=0.5}, \texttt{reg\_alpha=0.1} (L1 regularization), \texttt{reg\_lambda=1.0} (L2 regularization), \texttt{tree\_method='hist'}, \texttt{eval\_metric='mlogloss'} and \texttt{early\_stopping\_rounds=20}. The \texttt{sample\_weight} array is passed directly to \texttt{xgb.fit()}. The hist setting enables CUDA-accelerated histogram construction on the GPU.
+The XGBoost classifier is initialized with n\_estimators=300, max\_depth=6, learning\_rate=0.1, subsample=0.8, colsample\_bytree=0.5, reg\_alpha=0.1 (L1 regularization), reg\_lambda=1.0 (L2 regularization), tree\_method='hist', eval\_metric='mlogloss' and early\_stopping\_rounds=20. The sample\_weight array is passed directly to xgb.fit(). The hist setting enables CUDA-accelerated histogram construction on the GPU.
 
 \begin{figure}[H]
 \centering
@@ -849,7 +859,7 @@ The XGBoost classifier is initialized with \texttt{n\_estimators=300}, \texttt{m
 \label{fig:xgb_code}
 \end{figure}
 
-Both classifiers are trained independently on the full 40-feature, weighted RobustScaler input matrix. The soft-voting ensemble is then built by combining the pre-fitted Random Forest and XGBoost objects into a VotingClassifier with \texttt{voting='soft'}, bypassing its own \texttt{fit()} call. This is necessary because VotingClassifier does not route \texttt{sample\_weight} to its internal estimators, so fitting each model separately ensures both honour the weights.
+Both classifiers are trained independently on the full 40-feature, weighted RobustScaler input matrix. The soft-voting ensemble is then built by combining the pre-fitted Random Forest and XGBoost objects into a VotingClassifier with voting='soft', bypassing its own fit() call. This is necessary because VotingClassifier does not route sample\_weight to its internal estimators, so fitting each model separately ensures both honour the weights.
 
 \begin{figure}[H]
 \centering
@@ -1015,14 +1025,14 @@ The trained ensemble is deployed as an end-to-end real-time intrusion detection 
 
 \section{Model Implementation}
 
-The inference pipeline is implemented as a Python CLI script. At launch, it deserializes \texttt{ensemble\_model.pkl}, \texttt{scaler.pkl}, and \texttt{label\_encoder.pkl} from a fixed local path. It accepts flow records captured in real time via the custom CICFlowMeter implementation. For each incoming record, the following steps are applied:
+The inference pipeline is implemented as a Python CLI script. At launch, it deserializes ensemble\_model.pkl, scaler.pkl, and label\_encoder.pkl from a fixed local path. It accepts flow records captured in real time via the custom CICFlowMeter implementation. For each incoming record, the following steps are applied:
 
 \begin{enumerate}
     \item \textbf{Feature ordering:} The 40 input features are arranged in the exact order expected by the trained scaler.
     \item \textbf{Preprocessing:} Infinite values are replaced with NaN and rows with NaN are flagged and skipped. The RobustScaler transforms the numeric feature vector, and discriminative feature weights are applied.
     \item \textbf{Classification:} The ensemble generates per-class probability vectors from both base models, averages them, and selects the argmax class.
     \item \textbf{Alert generation:} If the predicted class is not Normal Traffic, an alert record is constructed containing the timestamp, predicted attack type, severity level (Critical for DDoS/DoS, High for Brute Force, Medium for Port Scan), individual model predictions, and the ensemble confidence score.
-    \item \textbf{Logging:} Every prediction, normal or attack, is appended to \texttt{alert\_log.csv} for audit purposes.
+    \item \textbf{Logging:} Every prediction, normal or attack, is appended to alert\_log.csv for audit purposes.
 \end{enumerate}
 
 The CLI prints a formatted summary line to the terminal for each flow processed. Detected attacks are additionally printed with a highlighted alert banner indicating the attack type and severity.
@@ -1097,14 +1107,14 @@ NIDAS successfully established a complete, standalone network monitoring pipelin
 \begin{itemize}[leftmargin=*]
     \item \textbf{Autonomous Flow Generation:} A custom, lightweight Python reimplementation of CICFlowMeter was developed to perform real-time packet sniffing, bidirectional flow tracking, and dynamic computation of 40 flow-level features, bypassing the latency and external dependencies of legacy Java utilities.
     \item \textbf{Ensemble Classification Engine:} A soft-voting ensemble combining Random Forest and XGBoost was trained on the combined CIC-IDS2017 and CSE-CIC-IDS2018 benchmark corpus ($1,799,905$ flows). By uniting the variance-reduction strengths of bagging with the gradient-guided optimization of boosting, the ensemble achieved an offline test accuracy of 99.94\% and a macro-averaged F1-score of 0.9994 across five distinct traffic categories: Normal Traffic, DoS, DDoS, Brute Force, and Port Scan.
-    \item \textbf{Operational Telemetry and Alerting:} An automated threat-mapping engine parses ensemble confidence vectors, assigns attack severity levels (Critical, High, Medium), logs persistent incident telemetry to \texttt{alert\_log.csv}, and renders real-time color-coded alerts on both the terminal interface and the full-stack web dashboard.
+    \item \textbf{Operational Telemetry and Alerting:} An automated threat-mapping engine parses ensemble confidence vectors, assigns attack severity levels (Critical, High, Medium), logs persistent incident telemetry to alert\_log.csv, and renders real-time color-coded alerts on both the terminal interface and the full-stack web dashboard.
 \end{itemize}
 
 \section{Pipeline Integrity and Training Inference Parity}
 
 A critical empirical lesson uncovered during practical deployment was the strict necessity of end-to-end transformation symmetry between offline training and live inference. In early deployment iterations, a feature transformation discrepancy was identified where discriminative feature weighting ($3.0\times$ for high-importance flow dynamics and $2.0\times$ for medium-importance attributes) was applied during estimator training but omitted in the live inference preprocessing step. 
 
-This discrepancy caused significant confidence skew on boundary attack signatures; specifically, probe and port-scanning vectors exhibited severely degraded classification confidence (collapsing to borderline probabilities of $\sim 4\%$). Rectifying this pipeline bug by ensuring exact symmetry in \texttt{RobustScaler} standardization and weight multiplication immediately restored high-confidence detection ($75\%\text - 96\%$) across live network flows. This underscored that high theoretical model accuracy remains fragile unless absolute parity is enforced between training-time and runtime feature engineering pipelines.
+This discrepancy caused significant confidence skew on boundary attack signatures; specifically, probe and port-scanning vectors exhibited severely degraded classification confidence (collapsing to borderline probabilities of $\sim 4\%$). Rectifying this pipeline bug by ensuring exact symmetry in RobustScaler standardization and weight multiplication immediately restored high-confidence detection ($75\%\text - 96\%$) across live network flows. This underscored that high theoretical model accuracy remains fragile unless absolute parity is enforced between training-time and runtime feature engineering pipelines.
 
 \section{Domain Generalization and Continuous Adaptation}
 
@@ -1119,7 +1129,7 @@ Evaluating the trained model on live network environments revealed a pronounced 
 While the ensemble attained exceptional performance on the curated test set (surpassing 99.9\% accuracy with an FPR of 0.021\% on benign traffic), real-world deployment exposed critical, predictable edge cases inherent to flow-based tabular architectures:
 \begin{itemize}[leftmargin=*]
     \item \textbf{The Single-Packet / Zero-Duration Trap (UDP Noise):} The 40 flow-level tabular features do not encode transport-layer protocol semantics (TCP versus UDP). Consequently, legitimate single-packet UDP interactions (such as Network Time Protocol (NTP) clock synchronizations characterized by 1 forward packet, 0 backward packets, and 0 duration) produce flow vectors statistically indistinguishable from single-probe reconnaissance scans. This occasionally triggered false-positive Port Scan alerts on benign background NTP traffic, demonstrating that purely statistical flow models require complementary protocol-aware whitelisting or cross-flow correlation.
-    \item \textbf{The Temporal Trap (Slow Benign Transactions):} Tree-based models heavily exploit \texttt{Flow Duration} to isolate sustained denial-of-service flooding. However, benign connections with long idle delays or slow server response times (such as slow HTTP/HTTPS transactions spanning 40 to 60 seconds with minimal packet volume) can mimic the temporal profile of low-and-slow DoS attacks (e.g., Slowloris or Hulk). This led to occasional borderline DoS false positives on sluggish web traffic, highlighting that models can become biased toward temporal duration over volumetric packet density.
+    \item \textbf{The Temporal Trap (Slow Benign Transactions):} Tree-based models heavily exploit Flow Duration to isolate sustained denial-of-service flooding. However, benign connections with long idle delays or slow server response times (such as slow HTTP/HTTPS transactions spanning 40 to 60 seconds with minimal packet volume) can mimic the temporal profile of low-and-slow DoS attacks (e.g., Slowloris or Hulk). This led to occasional borderline DoS false positives on sluggish web traffic, highlighting that models can become biased toward temporal duration over volumetric packet density.
     \item \textbf{Payload and Encryption Vulnerabilities:} While tabular models reliably identify cleartext protocol artifacts (such as predictable payload distributions in FTP brute-force attempts), identical credential attacks transported across encrypted channels (such as SSH) yield altered packet distributions and encrypted payloads that evade artifact-dependent decision trees.
 \end{itemize}
 
@@ -1212,13 +1222,13 @@ Network Interface & Any Ethernet NIC & Gigabit Ethernet (for live capture) \\
 \chapter{References}
 
 \begin{enumerate}[label={[\arabic*]}, leftmargin=2.2em, itemsep=0.8em]
-    \item Ness S, Eswarakrishnan V, Sridharan H, Shinde V, Janapareddy N V P, \& Dhanawat V. (2025). A Robust Two-Tier Intrusion Detection System Using Machine Learning and Deep Learning Techniques. \textit{IEEE Access}, vol.~13, pp.~11623--11639. Available from: \texttt{https://doi.org/10.1109/ACCESS.2025.3526988}
-    \item Fathima AHN, Ibrahim SPS, Khraisat A. (2024). Enhancing Network Traffic Anomaly Detection: Leveraging Machine Learning and Feature Reduction for Effective Threat Detection. \textit{IEEE Access}, vol.~12, pp.~131845--131859. Available from: \texttt{https://doi.org/10.1109/ACCESS.2024.3458903}
-    \item Ji C, Liu H, Dai W. (2025). Hybrid Model for Network Traffic Anomaly Detection Based on Parallel Temporal Features and Residual Channel-Spatial Attention Mechanism. \textit{IEEE Access}, vol.~13, pp.~26179--26190. Available from: \texttt{https://doi.org/10.1109/ACCESS.2025.3538319}
-    \item Canadian Institute for Cybersecurity (CIC). (2017). Intrusion Detection Evaluation Dataset (CIC-IDS2017). University of New Brunswick. Available from: \texttt{https://www.unb.ca/cic/datasets/ids-2017.html}
+    \item Ness S, Eswarakrishnan V, Sridharan H, Shinde V, Janapareddy N V P, \& Dhanawat V. (2025). A Robust Two-Tier Intrusion Detection System Using Machine Learning and Deep Learning Techniques. \textit{IEEE Access}, vol.~13, pp.~11623--11639. Available from: https://doi.org/10.1109/ACCESS.2025.3526988
+    \item Fathima AHN, Ibrahim SPS, Khraisat A. (2024). Enhancing Network Traffic Anomaly Detection: Leveraging Machine Learning and Feature Reduction for Effective Threat Detection. \textit{IEEE Access}, vol.~12, pp.~131845--131859. Available from: https://doi.org/10.1109/ACCESS.2024.3458903
+    \item Ji C, Liu H, Dai W. (2025). Hybrid Model for Network Traffic Anomaly Detection Based on Parallel Temporal Features and Residual Channel-Spatial Attention Mechanism. \textit{IEEE Access}, vol.~13, pp.~26179--26190. Available from: https://doi.org/10.1109/ACCESS.2025.3538319
+    \item Canadian Institute for Cybersecurity (CIC). (2017). Intrusion Detection Evaluation Dataset (CIC-IDS2017). University of New Brunswick. Available from: https://www.unb.ca/cic/datasets/ids-2017.html
     \item Pedregosa F, Varoquaux G, Gramfort A, Michel V, Thirion B, Grisel O, et al. (2011). Scikit-learn: Machine Learning in Python. \textit{Journal of Machine Learning Research}, 12, pp.~2825--2830.
-    \item Chen T, Guestrin C. (2016). XGBoost: A Scalable Tree Boosting System. In \textit{Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining}, pp.~785--794. Available from: \texttt{https://doi.org/10.1145/2939672.2939785}
-    \item Sharafaldin I, Lashkari A H, Ghorbani A A. (2018). Toward Generating a New Intrusion Detection Dataset and Intrusion Traffic Characterization. \textit{Proceedings of the 4th International Conference on Information Systems Security and Privacy (ICISSP)}, pp.~108--116. Communications Security Establishment (CSE) \& Canadian Institute for Cybersecurity (CIC). Available from: \texttt{https://www.unb.ca/cic/datasets/ids-2018.html}
+    \item Chen T, Guestrin C. (2016). XGBoost: A Scalable Tree Boosting System. In \textit{Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining}, pp.~785--794. Available from: https://doi.org/10.1145/2939672.2939785
+    \item Sharafaldin I, Lashkari A H, Ghorbani A A. (2018). Toward Generating a New Intrusion Detection Dataset and Intrusion Traffic Characterization. \textit{Proceedings of the 4th International Conference on Information Systems Security and Privacy (ICISSP)}, pp.~108--116. Communications Security Establishment (CSE) \& Canadian Institute for Cybersecurity (CIC). Available from: https://www.unb.ca/cic/datasets/ids-2018.html
     \item Draper-Gil G, Lashkari A H, Mamun M S I, Ghorbani A A. (2016). Characterization of Encrypted Traffic with Comprehensive Features. In \textit{Proceedings of the 3rd International Conference on Information Systems Security and Privacy (ICISSP)}, pp.~407--414.
 \end{enumerate}
 
