@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.13)  19 OCT 2026 23:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.13)  22 OCT 2026 21:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -544,12 +544,12 @@ Chapter 2.
 [2
 
 ] [3] [4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 464--464
+Underfull \hbox (badness 10000) in paragraph at lines 467--467
 []|\T1/ptm/m/n/12 (+20) Model prun-ing/quantization for edge de-vices, over-sam-pling
  []
 
 [6] [7]
-Underfull \hbox (badness 7685) in paragraph at lines 488--488
+Underfull \hbox (badness 7685) in paragraph at lines 491--491
 \T1/ptm/m/n/12 (+20) Light-GBM, SVM) for net-work traf-fic
  []
 
@@ -559,53 +559,53 @@ Underfull \hbox (badness 7685) in paragraph at lines 488--488
 
 ]
 Chapter 3.
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 522.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 525.
 (c:/texlive/2026/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 6188) in paragraph at lines 522--523
+Underfull \hbox (badness 6188) in paragraph at lines 525--526
 []\T1/ptm/b/n/12 (+20) Normal Traf-fic: \T1/ptm/m/n/12 (+20) Merg-ing BE-NIGN from CIC-IDS2017 and be-nign from
  []
 
 [10
 
 ] [11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 624--624
+Underfull \hbox (badness 10000) in paragraph at lines 627--627
 \T1/ptm/m/n/10.95 (+20) Mea-sures pay-load vari-abil-ity across the
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 657--657
+Underfull \hbox (badness 10000) in paragraph at lines 660--660
 []|\T1/ptm/m/n/10.95 (+20) Temporal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 657--657
+Underfull \hbox (badness 10000) in paragraph at lines 660--660
 []|\T1/ptm/m/n/10.95 (+20) Standard de-vi-a-tion of inter-arrival times.
  []
 
 
-Underfull \hbox (badness 6625) in paragraph at lines 657--657
+Underfull \hbox (badness 6625) in paragraph at lines 660--660
 \T1/ptm/m/n/10.95 (+20) pack-ets. Di-ag-nos-tic of rapid-fire at-tack
  []
 
 
-Underfull \hbox (badness 5036) in paragraph at lines 657--657
+Underfull \hbox (badness 5036) in paragraph at lines 660--660
 []|\T1/ptm/m/n/10.95 (+20) Standard de-vi-a-tion of for-ward inter-arrival
  []
 
 [15]
-Underfull \hbox (badness 6063) in paragraph at lines 690--690
+Underfull \hbox (badness 6063) in paragraph at lines 693--693
 []|\T1/ptm/m/n/10.95 (+20) Total octets in for-ward trans-port head-ers.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 690--690
+Underfull \hbox (badness 10000) in paragraph at lines 693--693
 []|\T1/ptm/m/n/10.95 (+20) Global mean packet size:
  []
 
 [16]
-Underfull \hbox (badness 5022) in paragraph at lines 723--723
+Underfull \hbox (badness 5022) in paragraph at lines 726--726
 \T1/ptm/m/n/10.95 (+20) ur-gent pay-load push in ac-tive ap-pli-ca-tion
  []
 
@@ -613,264 +613,297 @@ Underfull \hbox (badness 5022) in paragraph at lines 723--723
 <figures/fig3_1_feature_distribution.png, id=96, 722.7pt x 433.62pt>
 File: figures/fig3_1_feature_distribution.png Graphic file (type png)
 <use figures/fig3_1_feature_distribution.png>
-Package pdftex.def Info: figures/fig3_1_feature_distribution.png  used on input line 734.
-(pdftex.def)             Requested size: 385.02547pt x 231.01509pt.
+Package pdftex.def Info: figures/fig3_1_feature_distribution.png  used on input line 737.
+(pdftex.def)             Requested size: 430.31812pt x 258.18906pt.
  [18]
 <figures/class_distribution.png, id=100, 435.5472pt x 371.4678pt>
 File: figures/class_distribution.png Graphic file (type png)
 <use figures/class_distribution.png>
-Package pdftex.def Info: figures/class_distribution.png  used on input line 749.
+Package pdftex.def Info: figures/class_distribution.png  used on input line 752.
 (pdftex.def)             Requested size: 294.42636pt x 251.11537pt.
  [19 <./figures/fig3_1_feature_distribution.png>]
 <figures/fig3_3_correlation_matrix.png, id=105, 867.24pt x 722.7pt>
 File: figures/fig3_3_correlation_matrix.png Graphic file (type png)
 <use figures/fig3_3_correlation_matrix.png>
-Package pdftex.def Info: figures/fig3_3_correlation_matrix.png  used on input line 758.
-(pdftex.def)             Requested size: 339.72592pt x 283.109pt.
- [20 <./figures/class_distribution.png>]
-<figures/fig3_4_key_feature_distributions.png, id=110, 1011.78pt x 722.7pt>
-File: figures/fig3_4_key_feature_distributions.png Graphic file (type png)
-<use figures/fig3_4_key_feature_distributions.png>
-Package pdftex.def Info: figures/fig3_4_key_feature_distributions.png  used on input line 767.
-(pdftex.def)             Requested size: 407.66833pt x 291.19215pt.
+Package pdftex.def Info: figures/fig3_3_correlation_matrix.png  used on input line 761.
+(pdftex.def)             Requested size: 475.61766pt x 396.35039pt.
+
+Overfull \hbox (22.64977pt too wide) in paragraph at lines 761--762
+ [][] 
+ []
+
+[20 <./figures/class_distribution.png>]
+<figures/fig3_4_packet_length_mean.png, id=110, 570.6921pt x 425.9112pt>
+File: figures/fig3_4_packet_length_mean.png Graphic file (type png)
+<use figures/fig3_4_packet_length_mean.png>
+Package pdftex.def Info: figures/fig3_4_packet_length_mean.png  used on input line 770.
+(pdftex.def)             Requested size: 430.31812pt x 321.1483pt.
  [21 <./figures/fig3_3_correlation_matrix.png>]
-<figures/fig3_5_packet_length_mean_boxplot.png, id=115, 650.43pt x 361.35pt>
+<figures/fig3_4_flow_duration.png, id=115, 570.933pt x 425.9112pt>
+File: figures/fig3_4_flow_duration.png Graphic file (type png)
+<use figures/fig3_4_flow_duration.png>
+Package pdftex.def Info: figures/fig3_4_flow_duration.png  used on input line 779.
+(pdftex.def)             Requested size: 430.31812pt x 321.02483pt.
+ [22 <./figures/fig3_4_packet_length_mean.png>]
+<figures/fig3_4_flow_bytes_s.png, id=121, 570.933pt x 425.9112pt>
+File: figures/fig3_4_flow_bytes_s.png Graphic file (type png)
+<use figures/fig3_4_flow_bytes_s.png>
+Package pdftex.def Info: figures/fig3_4_flow_bytes_s.png  used on input line 788.
+(pdftex.def)             Requested size: 430.31812pt x 321.02483pt.
+ [23 <./figures/fig3_4_flow_duration.png>]
+<figures/fig3_4_fwd_packet_length_mean.png, id=126, 570.6921pt x 425.9112pt>
+File: figures/fig3_4_fwd_packet_length_mean.png Graphic file (type png)
+<use figures/fig3_4_fwd_packet_length_mean.png>
+Package pdftex.def Info: figures/fig3_4_fwd_packet_length_mean.png  used on input line 797.
+(pdftex.def)             Requested size: 430.31812pt x 321.1483pt.
+ [24 <./figures/fig3_4_flow_bytes_s.png>]
+<figures/fig3_5_packet_length_mean_boxplot.png, id=131, 650.43pt x 361.35pt>
 File: figures/fig3_5_packet_length_mean_boxplot.png Graphic file (type png)
 <use figures/fig3_5_packet_length_mean_boxplot.png>
-Package pdftex.def Info: figures/fig3_5_packet_length_mean_boxplot.png  used on input line 776.
+Package pdftex.def Info: figures/fig3_5_packet_length_mean_boxplot.png  used on input line 806.
 (pdftex.def)             Requested size: 385.02547pt x 213.90593pt.
- [22 <./figures/fig3_4_key_feature_distributions.png>]
-<figures/fig3_6_flow_duration_boxplot.png, id=121, 650.43pt x 361.35pt>
+ [25 <./figures/fig3_4_fwd_packet_length_mean.png>]
+<figures/fig3_6_flow_duration_boxplot.png, id=136, 650.43pt x 361.35pt>
 File: figures/fig3_6_flow_duration_boxplot.png Graphic file (type png)
 <use figures/fig3_6_flow_duration_boxplot.png>
-Package pdftex.def Info: figures/fig3_6_flow_duration_boxplot.png  used on input line 785.
-(pdftex.def)             Requested size: 385.02547pt x 213.90593pt.
- [23 <./figures/fig3_5_packet_length_mean_boxplot.png>] [24 <./figures/fig3_6_flow_duration_boxplot.png>] [25]
-<figures/image7.png, id=133, 721.69624pt x 1088.065pt>
+Package pdftex.def Info: figures/fig3_6_flow_duration_boxplot.png  used on input line 815.
+(pdftex.def)             Requested size: 430.31812pt x 239.07068pt.
+ [26 <./figures/fig3_5_packet_length_mean_boxplot.png>] [27 <./figures/fig3_6_flow_duration_boxplot.png>] [28]
+<figures/image7.png, id=149, 721.69624pt x 1088.065pt>
 File: figures/image7.png Graphic file (type png)
 <use figures/image7.png>
-Package pdftex.def Info: figures/image7.png  used on input line 816.
+Package pdftex.def Info: figures/image7.png  used on input line 846.
 (pdftex.def)             Requested size: 203.83417pt x 307.31253pt.
- [26 <./figures/image7.png>] [27]
-<figures/image8.png, id=143, 853.1875pt x 554.07pt>
+ [29 <./figures/image7.png>] [30]
+<figures/image8.png, id=159, 853.1875pt x 554.07pt>
 File: figures/image8.png Graphic file (type png)
 <use figures/image8.png>
-Package pdftex.def Info: figures/image8.png  used on input line 843.
-(pdftex.def)             Requested size: 339.72592pt x 220.62645pt.
- [28 <./figures/image8.png>] [29]
-<figures/pipeline.png, id=153, 1541.76pt x 1027.84pt>
-File: figures/pipeline.png Graphic file (type png)
-<use figures/pipeline.png>
-Package pdftex.def Info: figures/pipeline.png  used on input line 882.
-(pdftex.def)             Requested size: 430.31812pt x 286.8679pt.
- [30] [31 <./figures/pipeline.png (PNG copy)>] [32] [33] [34]
+Package pdftex.def Info: figures/image8.png  used on input line 873.
+(pdftex.def)             Requested size: 385.02547pt x 250.04782pt.
+ [31 <./figures/image8.png>] [32]
+<figures/newpipeline.png, id=168, 1090.0725pt x 1453.43pt>
+File: figures/newpipeline.png Graphic file (type png)
+<use figures/newpipeline.png>
+Package pdftex.def Info: figures/newpipeline.png  used on input line 912.
+(pdftex.def)             Requested size: 430.31812pt x 573.7548pt.
+ [33] [34 <./figures/newpipeline.png (PNG copy)>] [35] [36] [37] [38]
 Chapter 4.
-<figures/screenshot_feat_preproc.png, id=170, 442.65375pt x 377.91188pt>
+<figures/screenshot_feat_preproc.png, id=188, 442.65375pt x 377.91188pt>
 File: figures/screenshot_feat_preproc.png Graphic file (type png)
 <use figures/screenshot_feat_preproc.png>
-Package pdftex.def Info: figures/screenshot_feat_preproc.png  used on input line 997.
+Package pdftex.def Info: figures/screenshot_feat_preproc.png  used on input line 1027.
 (pdftex.def)             Requested size: 317.07614pt x 270.71239pt.
-[35
+[39
 
  <./figures/screenshot_feat_preproc.png>]
-<figures/image12.png, id=175, 391.4625pt x 137.01187pt>
+<figures/image12.png, id=193, 391.4625pt x 137.01187pt>
 File: figures/image12.png Graphic file (type png)
 <use figures/image12.png>
-Package pdftex.def Info: figures/image12.png  used on input line 1006.
+Package pdftex.def Info: figures/image12.png  used on input line 1036.
 (pdftex.def)             Requested size: 317.07614pt x 110.98318pt.
-<figures/image11.png, id=176, 406.51875pt x 141.52875pt>
+<figures/image11.png, id=194, 406.51875pt x 141.52875pt>
 File: figures/image11.png Graphic file (type png)
 <use figures/image11.png>
-Package pdftex.def Info: figures/image11.png  used on input line 1007.
+Package pdftex.def Info: figures/image11.png  used on input line 1037.
 (pdftex.def)             Requested size: 317.07614pt x 110.39413pt.
-<figures/image13.png, id=177, 453.94594pt x 249.18094pt>
-File: figures/image13.png Graphic file (type png)
-<use figures/image13.png>
-Package pdftex.def Info: figures/image13.png  used on input line 1018.
-(pdftex.def)             Requested size: 339.72592pt x 186.486pt.
- [36 <./figures/image12.png> <./figures/image11.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1023--1024
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
 []\T1/ptm/m/n/12 (+20) To ad-dress class im-bal-ance, bal-anced per-sample weights are com-puted us-ing
  []
 
-<figures/image14.png, id=183, 809.27344pt x 497.60907pt>
+[40 <./figures/image12.png> <./figures/image11.png>]
+<figures/image13.png, id=201, 453.94594pt x 249.18094pt>
+File: figures/image13.png Graphic file (type png)
+<use figures/image13.png>
+Package pdftex.def Info: figures/image13.png  used on input line 1050.
+(pdftex.def)             Requested size: 326.13744pt x 179.02611pt.
+<figures/image14.png, id=202, 809.27344pt x 497.60907pt>
 File: figures/image14.png Graphic file (type png)
 <use figures/image14.png>
-Package pdftex.def Info: figures/image14.png  used on input line 1027.
-(pdftex.def)             Requested size: 385.02547pt x 236.7464pt.
-[37 <./figures/image13.png> <./figures/image14.png>]
-<figures/image15.png, id=189, 488.57532pt x 290.58563pt>
+Package pdftex.def Info: figures/image14.png  used on input line 1051.
+(pdftex.def)             Requested size: 353.31439pt x 217.24785pt.
+ [41 <./figures/image13.png> <./figures/image14.png>]
+<figures/image15.png, id=209, 488.57532pt x 290.58563pt>
 File: figures/image15.png Graphic file (type png)
 <use figures/image15.png>
-Package pdftex.def Info: figures/image15.png  used on input line 1040.
-(pdftex.def)             Requested size: 362.37569pt x 215.53104pt.
-<figures/image16.png, id=190, 573.64313pt x 397.485pt>
+Package pdftex.def Info: figures/image15.png  used on input line 1066.
+(pdftex.def)             Requested size: 326.13744pt x 193.97748pt.
+<figures/image16.png, id=210, 573.64313pt x 397.485pt>
 File: figures/image16.png Graphic file (type png)
 <use figures/image16.png>
-Package pdftex.def Info: figures/image16.png  used on input line 1049.
-(pdftex.def)             Requested size: 362.37569pt x 251.10223pt.
- [38 <./figures/image15.png>]
-<figures/image18.png, id=195, 590.95781pt x 392.96812pt>
+Package pdftex.def Info: figures/image16.png  used on input line 1067.
+(pdftex.def)             Requested size: 326.13744pt x 225.98654pt.
+ [42 <./figures/image15.png> <./figures/image16.png>]
+<figures/image18.png, id=216, 590.95781pt x 392.96812pt>
 File: figures/image18.png Graphic file (type png)
 <use figures/image18.png>
-Package pdftex.def Info: figures/image18.png  used on input line 1058.
+Package pdftex.def Info: figures/image18.png  used on input line 1076.
 (pdftex.def)             Requested size: 385.02547pt x 256.03186pt.
- [39 <./figures/image16.png>]
-<figures/feature_importance_top20.png, id=200, 571.1739pt x 498.4221pt>
+<figures/feature_importance_top20.png, id=217, 571.1739pt x 498.4221pt>
 File: figures/feature_importance_top20.png Graphic file (type png)
 <use figures/feature_importance_top20.png>
-Package pdftex.def Info: figures/feature_importance_top20.png  used on input line 1067.
+Package pdftex.def Info: figures/feature_importance_top20.png  used on input line 1085.
 (pdftex.def)             Requested size: 339.72592pt x 296.46216pt.
- [40 <./figures/image18.png>] [41 <./figures/feature_importance_top20.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1103--1103
+ [43 <./figures/image18.png>] [44 <./figures/feature_importance_top20.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1121--1121
 []|\T1/ptm/m/n/12 (+20) Milestone 6: Soft-Voting
  []
 
-[42]
-<figures/image20.png, id=214, 861.9703pt x 230.36063pt>
+[45]
+<figures/image20.png, id=229, 861.9703pt x 230.36063pt>
 File: figures/image20.png Graphic file (type png)
 <use figures/image20.png>
-Package pdftex.def Info: figures/image20.png  used on input line 1116.
-(pdftex.def)             Requested size: 385.02547pt x 102.89854pt.
-<figures/image19.png, id=215, 747.54282pt x 176.91093pt>
+Package pdftex.def Info: figures/image20.png  used on input line 1134.
+(pdftex.def)             Requested size: 371.43698pt x 99.26755pt.
+<figures/image19.png, id=230, 747.54282pt x 176.91093pt>
 File: figures/image19.png Graphic file (type png)
 <use figures/image19.png>
-Package pdftex.def Info: figures/image19.png  used on input line 1123.
-(pdftex.def)             Requested size: 385.02547pt x 91.11958pt.
- [43 <./figures/image20.png> <./figures/image19.png>]
+Package pdftex.def Info: figures/image19.png  used on input line 1135.
+(pdftex.def)             Requested size: 371.43698pt x 87.90186pt.
+ [46 <./figures/image20.png> <./figures/image19.png>]
 Chapter 5.
-[44
+[47
 
 ]
-<figures/confusion_matrix.png, id=224, 437.2335pt x 426.393pt>
+<figures/confusion_matrix.png, id=240, 437.2335pt x 426.393pt>
 File: figures/confusion_matrix.png Graphic file (type png)
 <use figures/confusion_matrix.png>
-Package pdftex.def Info: figures/confusion_matrix.png  used on input line 1167.
+Package pdftex.def Info: figures/confusion_matrix.png  used on input line 1179.
 (pdftex.def)             Requested size: 294.42636pt x 287.1327pt.
- [45 <./figures/confusion_matrix.png>]
-<figures/classification_heatmap.png, id=229, 422.5386pt x 281.3712pt>
+ [48 <./figures/confusion_matrix.png>]
+<figures/classification_heatmap.png, id=245, 422.5386pt x 281.3712pt>
 File: figures/classification_heatmap.png Graphic file (type png)
 <use figures/classification_heatmap.png>
-Package pdftex.def Info: figures/classification_heatmap.png  used on input line 1214.
+Package pdftex.def Info: figures/classification_heatmap.png  used on input line 1226.
 (pdftex.def)             Requested size: 294.42636pt x 196.06117pt.
- [46] [47 <./figures/classification_heatmap.png>] [48]
+ [49] [50 <./figures/classification_heatmap.png>] [51]
 Chapter 6.
-[49
+[52
 
-] [50] [51] [52]
-<figures/flow_prediction.png, id=254, 473.51906pt x 331.2375pt>
+] [53] [54]
+<figures/flow_prediction.png, id=266, 473.51906pt x 331.2375pt>
 File: figures/flow_prediction.png Graphic file (type png)
 <use figures/flow_prediction.png>
-Package pdftex.def Info: figures/flow_prediction.png  used on input line 1327.
+Package pdftex.def Info: figures/flow_prediction.png  used on input line 1336.
 (pdftex.def)             Requested size: 434.85222pt x 304.19632pt.
-<figures/dashboard.png, id=255, 1445.4pt x 773.89125pt>
+<figures/dashboard.png, id=267, 1445.4pt x 773.89125pt>
 File: figures/dashboard.png Graphic file (type png)
 <use figures/dashboard.png>
-Package pdftex.def Info: figures/dashboard.png  used on input line 1335.
+Package pdftex.def Info: figures/dashboard.png  used on input line 1344.
 (pdftex.def)             Requested size: 407.66833pt x 218.27042pt.
- [53 <./figures/flow_prediction.png>] [54 <./figures/dashboard.png>]
+ [55 <./figures/flow_prediction.png>] [56 <./figures/dashboard.png>]
 Chapter 7.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<figures/git.png, id=264, 1445.4pt x 813.0375pt>
+<figures/git.png, id=276, 1445.4pt x 813.0375pt>
 File: figures/git.png Graphic file (type png)
 <use figures/git.png>
-Package pdftex.def Info: figures/git.png  used on input line 1373.
+Package pdftex.def Info: figures/git.png  used on input line 1382.
 (pdftex.def)             Requested size: 389.55266pt x 219.12607pt.
-[55
+[57
 
 {c:/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./figures/git.png>]
 Chapter 8.
-[56
+[58
 
-] [57] [58]
+] [59] [60]
 Chapter 9.
-[59
-
-] [60]
-Chapter 10.
-
-Overfull \hbox (1.89407pt too wide) in paragraph at lines 1502--1502
-[]|\T1/ptm/b/n/12 (-20) Component| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-[]|\T1/ptm/m/n/12 (+20) Stage 1:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-\T1/ptm/m/n/12 (+20) Zero-Variance
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-[]|\T1/ptm/m/n/12 (+20) Stage 2:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-\T1/ptm/m/n/12 (+20) Collinear-ity
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-\T1/ptm/m/n/12 (+20) Flag Count, Av-er-age
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-[]|\T1/ptm/m/n/12 (+20) Stage 3:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-\T1/ptm/m/n/12 (+20) Non-Parametric
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-[]|\T1/ptm/m/n/12 (+20) Kruskal-Wallis $\OML/ztmcm/m/it/12 H$\T1/ptm/m/n/12 (+20) -test re-vealed no
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-[]|\T1/ptm/m/n/12 (+20) Stage 4:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-\T1/ptm/m/n/12 (+20) Low-Importance
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1527
-\T1/ptm/m/n/12 (+20) Gen-er-al-iza-tion
- []
-
-
-Underfull \hbox (badness 5403) in paragraph at lines 1527--1527
-\T1/ptm/m/n/12 (+20) mem-o-riza-tion of static ser-vice ports;
- []
-
 [61
 
 ] [62]
-Underfull \hbox (badness 5008) in paragraph at lines 1565--1565
+Chapter 10.
+[63
+
+] [64]
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+[]|\T1/ptm/m/n/10.95 (+20) Stage 1:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Zero-Variance
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Fwd Avg Pack-ets/Bulk,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+[]|\T1/ptm/m/n/10.95 (+20) Constant zero val-ues across all 9.1M
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Fwd Pack-ets, Sub-flow
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Bwd Pack-ets, Sub-flow
+ []
+
+
+Underfull \hbox (badness 5077) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) URG Flags, ECE Flag
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Count, Av-er-age Packet
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+[]|\T1/ptm/m/n/10.95 (+20) Stage 3:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Non-Parametric
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+[]|\T1/ptm/m/n/10.95 (+20) Stage 4:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Low-Importance
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Gen-er-al-iza-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+\T1/ptm/m/n/10.95 (+20) Length Vari-ance, To-tal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1539
+[]|\T1/ptm/m/n/10.95 (+20) Pruned Des-ti-na-tion Port to elim-i-nate
+ []
+
+[65]
+Underfull \hbox (badness 5008) in paragraph at lines 1577--1577
 []|\T1/ptm/m/n/12 (+20) Unique hash iden-ti-fy-ing the bidi-rec-tional
  []
 
-[63] [64] [65]
+[66] [67] [68]
 Chapter 11.
 
-Underfull \hbox (badness 5490) in paragraph at lines 1626--1627
+Underfull \hbox (badness 5490) in paragraph at lines 1638--1639
 \T1/ptm/m/n/12 (+20) Dataset (CIC-IDS2017). Uni-ver-sity of New Brunswick. Avail-able from:
  []
 
-[66
+[69
 
 ] (./NIDAS_report.aux)
  ***********
@@ -879,18 +912,18 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 10191 strings out of 469472
- 163750 string characters out of 5469218
- 610586 words of memory out of 5000000
- 38273 multiletter control sequences out of 15000+600000
- 727612 words of font info for 404 fonts, out of 8000000 for 9000
+ 10240 strings out of 469472
+ 164999 string characters out of 5469218
+ 607615 words of memory out of 5000000
+ 38300 multiletter control sequences out of 15000+600000
+ 728520 words of font info for 418 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 67i,14n,77p,1324b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 67i,14n,77p,1127b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on NIDAS_report.pdf (75 pages, 4759420 bytes).
+Output written on NIDAS_report.pdf (78 pages, 4954636 bytes).
 PDF statistics:
- 367 PDF objects out of 1000 (max. 8388607)
- 210 compressed objects within 3 object streams
+ 382 PDF objects out of 1000 (max. 8388607)
+ 216 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 104579 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 104594 words of extra memory for PDF output out of 106986 (max. 10000000)
 

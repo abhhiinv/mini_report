@@ -16,53 +16,53 @@
 \contentsline {subsection}{\numberline {3.2.2}Analysis of Feature Variables}{12}{}%
 \contentsline {subsection}{\numberline {3.2.3}Analysis of Class Variables}{18}{}%
 \contentsline {section}{\numberline {3.3}Data Visualization}{20}{}%
-\contentsline {section}{\numberline {3.4}Analysis of Architecture and Algorithms}{24}{}%
-\contentsline {subsection}{\numberline {3.4.1}Detailed Study Report of the Proposed Algorithms}{25}{}%
-\contentsline {section}{\numberline {3.5}Project Pipeline}{30}{}%
-\contentsline {subsection}{\numberline {3.5.1}Project Pipeline Diagram and Development Plan}{30}{}%
-\contentsline {section}{\numberline {3.6}Feasibility Analysis}{33}{}%
-\contentsline {subsection}{\numberline {3.6.1}Technical Feasibility}{33}{}%
-\contentsline {subsection}{\numberline {3.6.2}Economic Feasibility}{33}{}%
-\contentsline {subsection}{\numberline {3.6.3}Operational Feasibility}{33}{}%
-\contentsline {section}{\numberline {3.7}System Environment}{34}{}%
-\contentsline {subsection}{\numberline {3.7.1}Software Environment}{34}{}%
-\contentsline {subsection}{\numberline {3.7.2}Hardware Environment}{34}{}%
-\contentsline {chapter}{\numberline {4}System Design}{35}{}%
-\contentsline {section}{\numberline {4.1}Model Building}{35}{}%
-\contentsline {subsection}{\numberline {4.1.1}Implementation Code}{35}{}%
-\contentsline {subsection}{\numberline {4.1.2}Model Planning}{36}{}%
-\contentsline {subsection}{\numberline {4.1.3}Training}{38}{}%
-\contentsline {subsection}{\numberline {4.1.4}Model Evolution and Validation Across Development Milestones}{41}{}%
-\contentsline {subsection}{\numberline {4.1.5}Testing}{42}{}%
-\contentsline {chapter}{\numberline {5}Results and Discussion}{44}{}%
-\contentsline {section}{\numberline {5.1}Comparison of Models}{44}{}%
-\contentsline {section}{\numberline {5.2}Confusion Matrix}{45}{}%
-\contentsline {section}{\numberline {5.3}Evaluation Metrics}{46}{}%
-\contentsline {section}{\numberline {5.4}Metrics Calculated from the Confusion Matrix}{47}{}%
-\contentsline {section}{\numberline {5.5}Discussion}{48}{}%
-\contentsline {chapter}{\numberline {6}Model Deployment}{49}{}%
-\contentsline {section}{\numberline {6.1}Model Implementation}{49}{}%
-\contentsline {subsection}{\numberline {6.1.1}Architecture of the Custom Flow Extraction Engine}{49}{}%
-\contentsline {subsection}{\numberline {6.1.2}Online Metric Computation via Welford's Algorithm}{50}{}%
-\contentsline {subsection}{\numberline {6.1.3}Inference Pipeline and Alert Generation}{50}{}%
-\contentsline {subsection}{\numberline {6.1.4}Live Capture Optimization and Flow Responsiveness}{51}{}%
-\contentsline {section}{\numberline {6.2}UI Design}{53}{}%
-\contentsline {chapter}{\numberline {7}Git History}{55}{}%
-\contentsline {chapter}{\numberline {8}Conclusions}{56}{}%
-\contentsline {section}{\numberline {8.1}Implementation of the Real-Time IDS Pipeline}{56}{}%
-\contentsline {section}{\numberline {8.2}Pipeline Integrity and Training Inference Parity}{56}{}%
-\contentsline {section}{\numberline {8.3}Domain Generalization and Continuous Adaptation}{57}{}%
-\contentsline {section}{\numberline {8.4}Critical Analysis of Operational Limitations}{57}{}%
-\contentsline {section}{\numberline {8.5}Concluding Remarks}{58}{}%
-\contentsline {chapter}{\numberline {9}Future Work}{59}{}%
-\contentsline {section}{\numberline {9.1}Continual Learning and Adaptive Concept Drift Mitigation}{59}{}%
-\contentsline {section}{\numberline {9.2}Explainable AI (XAI) and Real-Time SHAP Attributions}{59}{}%
-\contentsline {section}{\numberline {9.3}Hardware Acceleration and Kernel-Level Packet Inspection}{59}{}%
-\contentsline {section}{\numberline {9.4}Hybrid Unsupervised Zero-Day Threat Interception}{60}{}%
-\contentsline {chapter}{\numberline {10}Appendix}{61}{}%
-\contentsline {section}{\numberline {10.1}Minimum Software Requirements}{61}{}%
-\contentsline {section}{\numberline {10.2}Minimum Hardware Requirements}{61}{}%
-\contentsline {section}{\numberline {10.3}Feature Pruning and Dimensionality Reduction Audit Log}{61}{}%
-\contentsline {section}{\numberline {10.4}Operational Incident Telemetry Schema and Real Event Log}{63}{}%
-\contentsline {subsection}{\numberline {10.4.1}Operational Analysis of Real Incident Telemetry}{65}{}%
-\contentsline {chapter}{\numberline {11}References}{66}{}%
+\contentsline {section}{\numberline {3.4}Analysis of Architecture and Algorithms}{27}{}%
+\contentsline {subsection}{\numberline {3.4.1}Detailed Study Report of the Proposed Algorithms}{28}{}%
+\contentsline {section}{\numberline {3.5}Project Pipeline}{33}{}%
+\contentsline {subsection}{\numberline {3.5.1}Project Pipeline Diagram and Development Plan}{33}{}%
+\contentsline {section}{\numberline {3.6}Feasibility Analysis}{36}{}%
+\contentsline {subsection}{\numberline {3.6.1}Technical Feasibility}{36}{}%
+\contentsline {subsection}{\numberline {3.6.2}Economic Feasibility}{36}{}%
+\contentsline {subsection}{\numberline {3.6.3}Operational Feasibility}{37}{}%
+\contentsline {section}{\numberline {3.7}System Environment}{37}{}%
+\contentsline {subsection}{\numberline {3.7.1}Software Environment}{37}{}%
+\contentsline {subsection}{\numberline {3.7.2}Hardware Environment}{37}{}%
+\contentsline {chapter}{\numberline {4}System Design}{39}{}%
+\contentsline {section}{\numberline {4.1}Model Building}{39}{}%
+\contentsline {subsection}{\numberline {4.1.1}Implementation Code}{39}{}%
+\contentsline {subsection}{\numberline {4.1.2}Model Planning}{40}{}%
+\contentsline {subsection}{\numberline {4.1.3}Training}{41}{}%
+\contentsline {subsection}{\numberline {4.1.4}Model Evolution and Validation Across Development Milestones}{44}{}%
+\contentsline {subsection}{\numberline {4.1.5}Testing}{45}{}%
+\contentsline {chapter}{\numberline {5}Results and Discussion}{47}{}%
+\contentsline {section}{\numberline {5.1}Comparison of Models}{47}{}%
+\contentsline {section}{\numberline {5.2}Confusion Matrix}{48}{}%
+\contentsline {section}{\numberline {5.3}Evaluation Metrics}{49}{}%
+\contentsline {section}{\numberline {5.4}Metrics Calculated from the Confusion Matrix}{50}{}%
+\contentsline {section}{\numberline {5.5}Discussion}{51}{}%
+\contentsline {chapter}{\numberline {6}Model Deployment}{52}{}%
+\contentsline {section}{\numberline {6.1}Model Implementation}{52}{}%
+\contentsline {subsection}{\numberline {6.1.1}Architecture of the Custom Flow Extraction Engine}{52}{}%
+\contentsline {subsection}{\numberline {6.1.2}Online Metric Computation via Welford's Algorithm}{52}{}%
+\contentsline {subsection}{\numberline {6.1.3}Inference Pipeline and Alert Generation}{53}{}%
+\contentsline {subsection}{\numberline {6.1.4}Live Capture Optimization and Flow Responsiveness}{54}{}%
+\contentsline {section}{\numberline {6.2}UI Design}{55}{}%
+\contentsline {chapter}{\numberline {7}Git History}{57}{}%
+\contentsline {chapter}{\numberline {8}Conclusions}{58}{}%
+\contentsline {section}{\numberline {8.1}Implementation of the Real-Time IDS Pipeline}{58}{}%
+\contentsline {section}{\numberline {8.2}Pipeline Integrity and Training Inference Parity}{58}{}%
+\contentsline {section}{\numberline {8.3}Domain Generalization and Continuous Adaptation}{59}{}%
+\contentsline {section}{\numberline {8.4}Critical Analysis of Operational Limitations}{59}{}%
+\contentsline {section}{\numberline {8.5}Concluding Remarks}{60}{}%
+\contentsline {chapter}{\numberline {9}Future Work}{61}{}%
+\contentsline {section}{\numberline {9.1}Continual Learning and Adaptive Concept Drift Mitigation}{61}{}%
+\contentsline {section}{\numberline {9.2}Explainable AI (XAI) and Real-Time SHAP Attributions}{61}{}%
+\contentsline {section}{\numberline {9.3}Hardware Acceleration and Kernel-Level Packet Inspection}{61}{}%
+\contentsline {section}{\numberline {9.4}Hybrid Unsupervised Zero-Day Threat Interception}{62}{}%
+\contentsline {chapter}{\numberline {10}Appendix}{63}{}%
+\contentsline {section}{\numberline {10.1}Minimum Software Requirements}{63}{}%
+\contentsline {section}{\numberline {10.2}Minimum Hardware Requirements}{64}{}%
+\contentsline {section}{\numberline {10.3}Feature Pruning and Dimensionality Reduction Audit Log}{65}{}%
+\contentsline {section}{\numberline {10.4}Operational Incident Telemetry Schema and Real Event Log}{66}{}%
+\contentsline {subsection}{\numberline {10.4.1}Operational Analysis of Real Incident Telemetry}{68}{}%
+\contentsline {chapter}{\numberline {11}References}{69}{}%

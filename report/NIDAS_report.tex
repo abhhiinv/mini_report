@@ -232,8 +232,7 @@ headheight=16pt
 \begin{tabular}{@{}p{0.55\textwidth}r@{}}
 \textbf{Dr.~Sonia Abraham} & \textbf{Dr.~Sonia Abraham} \\
 Faculty Guide & Head of the Department \\[1.8cm]
-\textbf{Dr.~Manu John} & \textbf{Internal Examiners} \\
-Project Coordinator & \\
+\textbf{Project Coordinator} & \textbf{Internal Examiners} \\
 \end{tabular}
 \end{center}
 
@@ -280,9 +279,13 @@ Finally, I express my deepest appreciation to my parents, family members, and fr
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-Network security has become a critical concern as cyberattacks grow in sophistication and frequency, posing serious threats to organizations across all sectors. This project addresses the challenge of detecting anomalous network traffic in real time by proposing an ensemble machine learning-based intrusion detection and alert system. The CIC-IDS2017 and CIC-IDS2018 datasets, widely used benchmarks containing labeled network traffic representing multiple attack categories including DoS, DDoS, Brute Force, and Port Scanning, are used for model training and evaluation.
+Network security has become increasingly critical as modern cyberattacks grow in frequency, stealth, and complexity, threatening organizational digital infrastructure across all sectors. Traditional signature-based intrusion detection systems struggle to detect novel zero-day exploits, evasive low-rate probing, and evolving volumetric attack vectors. Machine learning offers a promising paradigm for adaptive anomaly detection, yet operational implementations frequently encounter significant challenges, including severe class imbalance between benign and malicious flows, prohibitive inference latency, and the absence of end-to-end integration between theoretical offline models and live packet capture pipelines.
 
-The proposed approach combines Random Forest (RF) and Extreme Gradient Boosting (XGBoost) in an ensemble architecture to leverage the complementary strengths of both models, RF providing robust handling of high-dimensional structured data and XGBoost offering superior gradient-based optimization. Drawing from prior work on soft-voting ensemble methods for network anomaly detection (Ness et al., 2025) and spatiotemporal feature fusion for anomaly detection (Ji et al., 2025), this system extends existing approaches by integrating a real-time alerting mechanism that triggers notifications upon detection of anomalous traffic, a dimension not addressed in referenced literature. Furthermore, the pipeline incorporates an end-to-end architecture supporting live packet capture and real-time flow feature extraction for continuous threat monitoring.
+This work presents the Real-Time Network Intrusion Detection and Alert System (NIDAS), an end-to-end machine learning platform engineered for continuous network monitoring and automated threat alerting. The system is trained and evaluated on a curated corpus of 1,799,905 network flows derived from the CIC-IDS2017 benchmark, covering Normal Traffic alongside four prevalent attack vectors: Denial of Service (DoS), Distributed Denial of Service (DDoS), Port Scanning, and Brute Force. A rigorous five-stage feature selection methodology---comprising zero-variance removal, collinearity reduction ($r > 0.90$), Kruskal-Wallis non-parametric significance testing, Random Forest feature importance scoring, and domain validation---prunes 77 raw flow features down to an optimal 40-feature operational space.
+
+To overcome the operational limitations of single-model classifiers, NIDAS employs a soft-voting ensemble coupling Random Forest and Extreme Gradient Boosting (XGBoost). Random Forest ($B = 200$ trees) provides variance dampening across noisy packet metrics, while XGBoost (300 estimators with histogram-based binning) supplies precise bias reduction for difficult boundary distinctions. Balanced sample weighting counters class imbalance without introducing synthetic oversampling artifacts. On an independent test set of 394,168 flows, the ensemble achieves 99.88\% overall accuracy, a macro-averaged F1-score of 99.76\%, and sub-millisecond per-flow inference latency ($< 0.6$~ms).
+
+The operational pipeline is deployed as a lightweight client-server application featuring asynchronous live packet capture via Npcap/libpcap, online feature extraction using Welford's algorithm, and a stateful cross-flow sliding window detector for stealthy port scans. Inferred threats are categorized into color-coded severity tiers (Critical, High, Medium) and streamed via FastAPI WebSockets to an interactive React SOC dashboard with automated self-traffic suppression. The result is a robust, production-ready solution that bridges theoretical intrusion detection with low-overhead, real-time security operations.
 
 % 6. List of Tables
 \newpage
@@ -731,7 +734,7 @@ To understand how effectively different network features distinguish between ben
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{fig3_1_feature_distribution.png}
+\includegraphics[width=0.95\textwidth]{fig3_1_feature_distribution.png}
 \caption{Feature Distribution Across Attack Families (Log1p Scale)}
 \label{fig:feat_dist}
 \end{figure}
@@ -755,7 +758,7 @@ Figure~\ref{fig:class_dist} illustrates the class distribution of the curated 1,
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{fig3_3_correlation_matrix.png}
+\includegraphics[width=1.05\textwidth]{fig3_3_correlation_matrix.png}
 \caption{Feature Correlation Matrix (sample n=15,000)}
 \label{fig:corr_matrix}
 \end{figure}
@@ -764,12 +767,39 @@ Figure~\ref{fig:corr_matrix} displays the Pearson correlation matrix computed on
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{fig3_4_key_feature_distributions.png}
-\caption{Key Feature Distributions by Attack Type}
-\label{fig:key_feat_dist}
+\includegraphics[width=0.95\textwidth]{fig3_4_packet_length_mean.png}
+\caption{Packet Length Mean Density Distribution Across Attack Classes}
+\label{fig:dist_packet_length_mean}
 \end{figure}
 
-Figure~\ref{fig:key_feat_dist} shows the density distributions of four key features, Packet Length Mean, Flow Duration, Flow Bytes/s, and Fwd Packet Length Mean, stratified by the five attack classes on a log1p scale. Across all four features, the distributions are heavily right-skewed, with most values concentrated near zero and long tails extending toward high values. Port Scan produces a sharp, isolated spike at very low Packet Length Mean values, while DDoS and DoS cluster at higher values with tighter distributions. Flow Duration shows Port Scan concentrated at very short durations, consistent with rapid probe-style connections, while DoS spans the highest duration range, reflecting sustained flooding behaviour. Flow Bytes/s reveals a distinctive high-value spike for Port Scan, while DoS shows a prominent mid-range concentration and Normal Traffic spreads broadly across lower values. Fwd Packet Length Mean shows the sharpest class separation, with Brute Force and DDoS producing extremely narrow, high-density spikes at low values, clearly distinguishable from the broader Normal Traffic distribution. The visible separation between classes across these features confirms their relevance as discriminative inputs to the ensemble classifier.
+Figure~\ref{fig:dist_packet_length_mean} presents the empirical density distribution of Packet Length Mean across the five traffic categories on a log1p scale. The distribution is heavily right-skewed, with normal traffic concentrating in the lower-to-mid range. Port Scan traffic produces an extremely sharp, isolated spike at near-zero values, reflecting rapid probe packets carrying minimal payloads. In contrast, DoS and DDoS flows cluster at substantially higher packet length values with tightly bounded distributions, characteristic of sustained packet flooding with consistent payload sizing.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{fig3_4_flow_duration.png}
+\caption{Flow Duration Density Distribution Across Attack Classes}
+\label{fig:dist_flow_duration}
+\end{figure}
+
+Figure~\ref{fig:dist_flow_duration} displays the density distribution of Flow Duration on a log1p scale across each attack category. Port Scan activity exhibits a steep density concentration at very short durations, corresponding to rapid, transient connection attempts across target port ranges. Conversely, DoS traffic spans the highest duration spectrum, driven by long-lived sessions designed to exhaust server connection tables and socket buffers. Normal traffic and Brute Force exhibit intermediate duration profiles, providing strong discriminatory boundaries.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{fig3_4_flow_bytes_s.png}
+\caption{Flow Bytes/s Density Distribution Across Attack Classes}
+\label{fig:dist_flow_bytes_s}
+\end{figure}
+
+Figure~\ref{fig:dist_flow_bytes_s} illustrates the distribution of flow throughput measured in Flow Bytes per second. Normal traffic spreads broadly across lower throughput tiers, reflecting varied application workloads. Port Scan manifests as a distinctive high-rate peak due to rapid transmission of minimal probe frames within brief microsecond windows. DoS traffic concentrates in a prominent mid-to-high throughput band, distinguishing volumetric flooding from standard interactive communications.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{fig3_4_fwd_packet_length_mean.png}
+\caption{Forward Packet Length Mean Density Distribution Across Attack Classes}
+\label{fig:dist_fwd_packet_length_mean}
+\end{figure}
+
+Figure~\ref{fig:dist_fwd_packet_length_mean} shows the density distribution of Forward Packet Length Mean across the traffic categories. This feature demonstrates pronounced class separability: Brute Force and DDoS generate extremely narrow, high-density spikes at small forward packet lengths, clearly distinguishable from the broader profile of Normal Traffic. The visible separation between classes across Figures~\ref{fig:dist_packet_length_mean}--\ref{fig:dist_fwd_packet_length_mean} confirms the relevance of these individual metrics as discriminative inputs to the ensemble classifier.
 
 \begin{figure}[H]
 \centering
@@ -782,7 +812,7 @@ Figure~\ref{fig:packet_len_dist} presents box plots of Packet Length Mean across
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{fig3_6_flow_duration_boxplot.png}
+\includegraphics[width=0.95\textwidth]{fig3_6_flow_duration_boxplot.png}
 \caption{Flow Duration Distribution by Attack Class (Log Scale)}
 \label{fig:flow_dur_dist}
 \end{figure}
@@ -840,7 +870,7 @@ Justification: Ness et al.\ (2025) evaluated XGBoost directly against four other
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{image8.png}
+\includegraphics[width=0.85\textwidth]{image8.png}
 \caption{Flowchart of XGBoost}
 \label{fig:xgb_flowchart}
 \end{figure}
@@ -879,10 +909,11 @@ The NIDAS system is organised into seven functional stages, from raw traffic acq
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{pipeline.png}
+\includegraphics[width=0.95\textwidth]{newpipeline.png}
 \caption{Project Pipeline}
 \label{fig:pipeline}
 \end{figure}
+\newpage
 \begin{enumerate}[leftmargin=*]
     \item \textbf{Data Acquisition:} The system integrates 9,117,071 raw flow records from the CIC-IDS2017 and CSE-CIC-IDS2018 benchmarks, capturing 77 initial numeric flow characteristics and target metadata. After deduplication, cleaning, and subsampling, a curated benchmark of 1,799,905 flow records is established (59.12\% from 2018 and 40.88\% from 2017) to provide robust multi-environment representation. In deployment, a custom Python CICFlowMeter engine captures live packets from network sockets/PCAP and extracts the identical 40 bidirectional flow features in real time.
     
@@ -896,7 +927,7 @@ The NIDAS system is organised into seven functional stages, from raw traffic acq
     
     \item \textbf{Deployment and Real-Time Prediction:} In the operational deployment pipeline, live network traffic is captured via network sockets. The custom CICFlowMeter reassembles packets into bidirectional flows, extracts the 40 flow features, and formats them in the exact column ordering expected by the model. The real-time preprocessing stage verifies finite values, applies the pre-fitted RobustScaler, scales features using the discriminative weight vector, and executes soft-voting inference across both base models to yield the predicted attack class and confidence score.
     
-    \item \textbf{Alert Generation and System Output:} If the predicted class is anomalous, the system assigns a severity rating (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan). Telemetry is appended to a persistent audit log (alert\_log.csv) containing timestamps, predicted classes, severity ratings, individual model votes, and confidence scores. Real-time notifications and colored feeds are surfaced through a Terminal User Interface (TUI), with a modular pipeline designed for seamless integration with a future FastAPI WebSocket streaming backend and React JS dashboard.
+    \item \textbf{Alert Generation and System Output:} If the predicted class is anomalous, the system assigns a severity rating (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan). Telemetry is appended to a persistent audit log (alert\_log.csv) containing timestamps, predicted classes, severity ratings, individual model votes, and confidence scores. Real-time notifications and colored feeds are surfaced through both a terminal CLI and the asynchronous FastAPI WebSocket backend to the interactive React JS SOC monitoring dashboard.
 \end{enumerate}
 
 \section{Feasibility Analysis}
@@ -914,7 +945,6 @@ The project incurs no software licensing costs. All tools and frameworks used (P
 \subsection{Operational Feasibility}
 
 The system is operationally feasible within the scope of a mini-project. The dashboard interface provides a simple, readable output that does not require specialized cybersecurity expertise to interpret; attack type labels and confidence scores are surfaced directly. The alert log provides a persistent record of detected events that can be reviewed after the fact. The system operates as a real-time detection pipeline, processing live network traffic captured via a custom CICFlowMeter clone that extracts 40 flow-level features and streams them directly into the inference engine. The modular architecture ensures that the system can be scaled toward production network monitoring without restructuring core classification or alerting modules.
-\newpage
 \section{System Environment}
 
 \subsection{Software Environment}
@@ -1013,20 +1043,14 @@ The numerical features are normalized using RobustScaler to mitigate the effect 
 
 The preprocessed and balanced dataset is partitioned into an 80\% training set and a 20\% testing set using stratified sampling, ensuring that class proportions across all five traffic categories (Normal Traffic, DoS, DDoS, Brute Force, and Port Scan) are rigorously maintained across both splits. A fixed random\_state of 42 guarantees reproducibility across all evaluation runs. The held-out test split evaluates model generalizability under realistic multi-class network conditions.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{image13.png}
-\caption{Train Test Split}
-\label{fig:train_test_split}
-\end{figure}
-
 To address class imbalance, balanced per-sample weights are computed using compute\_sample\_weight(class\_weight='balanced', y=y\_train). This dynamically weights training records inversely proportional to their class frequency (assigning higher weights of 3.63 to Brute Force, 1.55 to Port Scan, 1.20 to DDoS, and 1.00 to DoS, while scaling the dominant Normal Traffic class to 0.44), compelling both classifiers to penalize minority attack errors heavily during training.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{image14.png}
-\caption{Class-Weight Adjustment Code}
-\label{fig:class_weight_code}
+\includegraphics[width=0.72\textwidth]{image13.png}\\[1ex]
+\includegraphics[width=0.78\textwidth]{image14.png}
+\caption{Data Partitioning and Class-Weight Adjustment Code}
+\label{fig:data_prep_code}
 \end{figure}
 
 \subsection{Training}
@@ -1035,20 +1059,14 @@ Prior to training the estimators, discriminative feature weighting is applied to
 
 The Random Forest classifier is initialized with n\_estimators=200, max\_depth=10, min\_samples\_split=5, max\_features=0.4 and n\_jobs=-1. The model is fitted with the precomputed sample\_weight array on the weighted feature matrix.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{image15.png}
-\caption{Random Forest Code}
-\label{fig:rf_code}
-\end{figure}
-
 The XGBoost classifier is initialized with n\_estimators=300, max\_depth=6, learning\_rate=0.1, subsample=0.8, colsample\_bytree=0.5, reg\_alpha=0.1 (L1 regularization), reg\_lambda=1.0 (L2 regularization), tree\_method='hist', eval\_metric='mlogloss' and early\_stopping\_rounds=20. The sample\_weight array is passed directly to xgb.fit(). The hist setting enables CUDA-accelerated histogram construction on the GPU.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{image16.png}
-\caption{XGBoost Code}
-\label{fig:xgb_code}
+\includegraphics[width=0.72\textwidth]{image15.png}\\[1ex]
+\includegraphics[width=0.72\textwidth]{image16.png}
+\caption{Base Classifier Implementation Code (Random Forest and XGBoost)}
+\label{fig:base_classifiers_code}
 \end{figure}
 
 Both classifiers are trained independently on the full 40-feature, weighted RobustScaler input matrix. The soft-voting ensemble is then built by combining the pre-fitted Random Forest and XGBoost objects into a VotingClassifier with voting='soft', bypassing its own fit() call. This is necessary because VotingClassifier does not route sample\_weight to its internal estimators, so fitting each model separately ensures both honour the weights.
@@ -1113,16 +1131,10 @@ The trained ensemble is evaluated on the held-out 20\% test split, which contain
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{image20.png}
-\caption{Classification Report Code}
-\label{fig:classification_report_code}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.85\textwidth]{image19.png}
-\caption{Confusion Matrix Code}
-\label{fig:confusion_matrix_code}
+\includegraphics[width=0.82\textwidth]{image20.png}\\[1.5ex]
+\includegraphics[width=0.82\textwidth]{image19.png}
+\caption{Model Evaluation Code (Classification Report and Confusion Matrix)}
+\label{fig:evaluation_code}
 \end{figure}
 
 %------------------------------------------------------------------------------------------------------------------
@@ -1257,11 +1269,9 @@ A consideration for live deployment is that incoming traffic must be processed u
 \newpage
 \chapter{Model Deployment}
 
-The trained ensemble is deployed as an end-to-end real-time intrusion detection and alerting system. The deployment consists of three serialized artifacts, a custom flow extraction pipeline, and dual operational interfaces: a terminal CLI for direct console monitoring and an interactive web dashboard for real-time telemetry.
+The trained ensemble is deployed as an end-to-end real-time intrusion detection and alerting system. The operational architecture integrates four serialized model artifacts with an autonomous wire-level flow reassembly engine and dual telemetry interfaces for console and web-based monitoring.
 
 \section{Model Implementation}
-
-The operational deployment of NIDAS bridges machine learning inference with raw network packet processing. The inference subsystem consists of three serialized model artifacts, an autonomous wire-level flow reassembly engine, and dual telemetry interfaces for console and web monitoring.
 
 \subsection{Architecture of the Custom Flow Extraction Engine}
 
@@ -1317,7 +1327,6 @@ Deploying the inference pipeline on live network interfaces revealed several ope
     \item \textbf{Internal Traffic Pre-Filtering:} Local network adapters regularly exchange operational frames such as IPv6 link-local messages, multicast DNS (mDNS), and address autoconfiguration packets. Because benchmark training datasets consist solely of routable host-to-host communications, evaluating these local infrastructure frames with machine learning models led to false positives (such as mDNS multicasts incorrectly flagged as Brute Force). A pre-prediction filter screens out loopback, link-local, multicast, and broadcast addresses before inference, allowing only routable unicast traffic to reach the classifier.
     \item \textbf{Dashboard Self-Traffic Exclusion:} The web user interface communicates with the FastAPI server over port 8000 using HTTP and WebSockets. To prevent feedback loops where dashboard communications generate captured packets that re-enter the feature extractor, all packets on destination or source port 8000 are automatically bypassed from flow tracking and alerting.
 \end{enumerate}
-\newpage
 \section{UI Design}
 
 To provide security operators with actionable, real-time threat intelligence, the system features a dedicated web-based monitoring dashboard. The interface is engineered using React JS for the interactive frontend and FastAPI for the asynchronous backend, with real-time bidirectional telemetry streamed over WebSocket endpoints to eliminate polling latency.
@@ -1448,68 +1457,71 @@ The proposed ensemble excels at multi-class classification across known attack f
 
 \section{Minimum Software Requirements}
 
+To clone, deploy, and execute the intrusion detection system on a client computer for both live network traffic sniffing and offline PCAP analysis, the software environment, drivers, and execution privileges outlined in Table~\ref{tab:software_requirements} must be satisfied. Because the deployment operates in inference mode using pre-trained model artifacts and serves a pre-compiled dashboard bundle, compiler toolchains, Node.js runtimes, and frontend build tools are completely unnecessary on the host system.
+
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.5cm}|X|p{4cm}|}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.8cm}|>{\raggedright\arraybackslash}p{4.2cm}|>{\raggedright\arraybackslash}X|}
 \hline
-\textbf{Component} & \textbf{Requirement} & \textbf{Version / Notes} \\
+\textbf{Component} & \textbf{Client Specification} & \textbf{Operational Scope and Configuration Details} \\
 \hline
-Operating System & Windows 10 / 11 or Linux (Ubuntu 20.04+) & 64-bit \\
+Operating System & Windows 10 / 11 / Server 2016+; Linux (Ubuntu 20.04+, Debian 11+, Fedora, Arch, CentOS/RHEL); macOS 11+ (Big Sur or newer) & Full 64-bit architecture support across x86\_64 and ARM processors (including Apple Silicon M-series). \\
 \hline
-Python & Python 3.10 or later & 3.10+ \\
+Software and Runtime & Git (for repository cloning); CPython 3.10, 3.11, or 3.12 (64-bit) & Core execution environment. Node.js (v18+) is only needed if modifying frontend source files in frontend/src/; runtime serves pre-compiled frontend/dist/ directly. \\
 \hline
-scikit-learn & ML framework & 1.4+ \\
+Packet Capture Driver & Npcap (Windows); libpcap (Linux); libpcap / BPF (macOS) & Required strictly for live interface sniffing. Windows requires Npcap installed in WinPcap API-compatible mode. Linux installs via libpcap-dev or libpcap-devel. macOS provides built-in BPF. \\
 \hline
-XGBoost & Gradient boosting & 2.0+ \\
+Execution Privileges & Standard user for offline PCAP mode; Elevated / administrative rights for live capture mode & Offline PCAP processing requires no elevated rights. Live capture requires Run as Administrator on Windows, superuser (sudo) or packet capture capability (sudo setcap cap\_net\_raw,cap\_net\_admin=eip) on Linux, or /dev/bpf* access on macOS. \\
 \hline
-pandas & Data processing & 2.0+ \\
+Operator Interface & Modern standards-compliant web browser (Chrome, Firefox, Edge, Brave, Safari) & Requires WebSocket protocol support for the live SOC dashboard telemetry stream served at port 8000. \\
 \hline
-NumPy & Numerical computing & 1.24+ \\
-\hline
-joblib & Model serialization & 1.3+ \\
-\hline
-FastAPI & Backend API & 0.110+ \\
-\hline
-React JS & Dashboard frontend & 18+ \\
-\hline
-Node.js & Required for React build & 18 LTS+ \\
+Python Dependencies & scapy, pandas, joblib, scikit-learn, xgboost, numpy, fastapi, uvicorn, websockets & Installed via pip. Supports live packet capture, model unpickling (VotingClassifier, RobustScaler), XGBoost gradient boosting, matrix calculation, and WebSocket telemetry. \\
 \hline
 \end{tabularx}
 \caption{Minimum Software Requirements}
 \label{tab:software_requirements}
 \end{table}
 
+The Python dependency stack is installed via pip (pip install scapy pandas joblib scikit-learn xgboost numpy fastapi uvicorn websockets), providing scapy for packet capture and PCAP stream decoding; scikit-learn, xgboost, and joblib for ensemble model deserialization and inference; pandas and numpy for vectorized flow calculations; and fastapi, uvicorn, and websockets for the asynchronous REST backend and real-time dashboard stream.
+
 \section{Minimum Hardware Requirements}
+
+Because NIDAS operates strictly in inference mode during client deployment and utilizes a streaming, constant-memory flow processing engine, the hardware demands on the host machine are modest. The system performs lightweight CPU-based tree traversal without requiring dedicated hardware accelerators. Table~\ref{tab:hardware_requirements} outlines the minimum and recommended client hardware specifications.
 
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\textwidth}{|>{\bfseries}p{2cm}|X|X|}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.3cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2.7cm}|>{\raggedright\arraybackslash}X|}
 \hline
-\textbf{Component} & \textbf{Minimum Specification} & \textbf{Recommended} \\
+\textbf{Component} & \textbf{Minimum} & \textbf{Recommended} & \textbf{Operational Notes} \\
 \hline
-CPU & Intel i5 (8th Gen) or equivalent & Intel i7 (12th Gen+) or equivalent \\
+CPU & Dual-Core 64-bit x86 / ARM & Quad-Core 2.0+ GHz & Multi-core architecture benefits parallel batch PCAP processing (via the workers flag) and multi-threaded live sniffing. \\
 \hline
-RAM & 8 GB & 16 GB \\
+RAM & 2 GB available & 4 GB -- 8 GB system memory & Accommodates the pre-trained ensemble model (ensemble\_model.pkl ~25 MB), active flow state tables, pandas DataFrames, and FastAPI network buffers. \\
 \hline
-Storage & 10 GB free space & SSD with 20 GB free \\
+Disk Space & ~200 MB & ~1 GB -- 2 GB & ~35 MB for repository and serialized models + ~500 MB for Python libraries (xgboost, scikit-learn, scapy, pandas) + operating headroom for CSV outputs and PCAP dumps. \\
 \hline
-GPU & Not required for inference & NVIDIA GPU with CUDA \\
+Network Card & Standard physical or virtual NIC & Promiscuous mode support & Required only for live packet capture on physical network interfaces or virtual adapters. Purely offline PCAP analysis requires no network adapter. \\
 \hline
-OS & Windows 10 / Ubuntu 20.04 & Windows 11 / Ubuntu 22.04 \\
+GPU & Not required & Not required & Client deployment executes purely CPU-based inference; dedicated GPUs or CUDA runtimes are completely unnecessary. \\
 \hline
 \end{tabularx}
 \caption{Minimum Hardware Requirements}
 \label{tab:hardware_requirements}
 \end{table}
+
+\newpage
 \section{Feature Pruning and Dimensionality Reduction Audit Log}
 
 To guarantee training reproducibility and document pipeline hygiene, Table~\ref{tab:feature_pruning_audit} details the complete dimensional reduction audit log. The pipeline filtered the original 77 raw flow features down to the finalized 40-feature operational space across five sequential stages.
 
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.2}
+\small
+\renewcommand{\arraystretch}{1.08}
 \begin{tabularx}{\textwidth}{|p{3.2cm}|p{4.2cm}|X|}
 \hline
 \textbf{Refinement Stage} & \textbf{Pruned Features} & \textbf{Engineering and Statistical Rationale} \\
