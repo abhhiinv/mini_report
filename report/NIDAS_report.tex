@@ -65,7 +65,7 @@ headheight=16pt
 % Table of Contents & Lists Spacing
 %--------------------------------
 \usepackage[titles]{tocloft}
-\setlength{\cftbeforechapskip}{6pt}      % Gap before chapter entries in TOC
+\setlength{\cftbeforechapskip}{4pt}      % Gap before chapter entries in TOC
 \setlength{\cftbeforesecskip}{2pt}       % Gap before section entries in TOC
 \setlength{\cftbeforesubsecskip}{1pt}    % Gap before subsection entries in TOC
 \setlength{\cftbeforefigskip}{3pt}       % Gap between figure entries in LOF
@@ -231,8 +231,9 @@ headheight=16pt
 \noindent
 \begin{tabular}{@{}p{0.55\textwidth}r@{}}
 \textbf{Dr.~Sonia Abraham} & \textbf{Dr.~Sonia Abraham} \\
-Faculty Guide & Head of the Department \\[1.8cm]
-\textbf{Project Coordinator} & \textbf{Internal Examiners} \\
+Faculty Guide & Head of the Department \\[1.5cm]
+\textbf{Dr.~Manu John} & \textbf{Internal Examiners} \\
+Project Coordinator & \\
 \end{tabular}
 \end{center}
 
@@ -265,7 +266,7 @@ I express my profound gratitude and heartfelt thanks to Dr. Sonia Abraham, Head 
 
 I extend my deep gratitude and sincere appreciation to my project guide, Dr. Sonia Abraham, for invaluable guidance, constructive suggestions, insightful feedback, and patient support rendered during all stages of this project development.
 
-I am also thankful to the Project Coordinator, faculty members, and technical staff of the Department of Computer Applications for their kind cooperation, guidance, and assistance.
+I express my sincere gratitude to the Project Coordinators, Dr.~Manu John and Prof.~Minu Maria Joseph, as well as the faculty members and technical staff of the Department of Computer Applications, for their kind cooperation, valuable guidance, and assistance.
 
 Finally, I express my deepest appreciation to my parents, family members, and friends for their continuous moral support, understanding, and encouragement throughout the completion of this project.
 
@@ -281,7 +282,7 @@ Finally, I express my deepest appreciation to my parents, family members, and fr
 
 Network security has become increasingly critical as modern cyberattacks grow in frequency, stealth, and complexity, threatening organizational digital infrastructure across all sectors. Traditional signature-based intrusion detection systems struggle to detect novel zero-day exploits, evasive low-rate probing, and evolving volumetric attack vectors. Machine learning offers a promising paradigm for adaptive anomaly detection, yet operational implementations frequently encounter significant challenges, including severe class imbalance between benign and malicious flows, prohibitive inference latency, and the absence of end-to-end integration between theoretical offline models and live packet capture pipelines.
 
-This work presents the Real-Time Network Intrusion Detection and Alert System (NIDAS), an end-to-end machine learning platform engineered for continuous network monitoring and automated threat alerting. The system is trained and evaluated on a curated corpus of 1,799,905 network flows derived from the CIC-IDS2017 benchmark, covering Normal Traffic alongside four prevalent attack vectors: Denial of Service (DoS), Distributed Denial of Service (DDoS), Port Scanning, and Brute Force. A rigorous five-stage feature selection methodology---comprising zero-variance removal, collinearity reduction ($r > 0.90$), Kruskal-Wallis non-parametric significance testing, Random Forest feature importance scoring, and domain validation---prunes 77 raw flow features down to an optimal 40-feature operational space.
+This work presents the Real-Time Network Intrusion Detection and Alert System (NIDAS), an end-to-end machine learning platform engineered for continuous network monitoring and automated threat alerting. The system is trained and evaluated on a curated corpus of 1,799,905 network flows derived from the CIC-IDS2017 benchmark, covering Normal Traffic alongside four prevalent attack vectors: Denial of Service (DoS), Distributed Denial of Service (DDoS), Port Scanning, and Brute Force. A rigorous five-stage feature selection methodology, comprising zero-variance removal, collinearity reduction ($r > 0.90$), Kruskal-Wallis non-parametric significance testing, Random Forest feature importance scoring, and domain validation, prunes 77 raw flow features down to an optimal 40-feature operational space.
 
 To overcome the operational limitations of single-model classifiers, NIDAS employs a soft-voting ensemble coupling Random Forest and Extreme Gradient Boosting (XGBoost). Random Forest ($B = 200$ trees) provides variance dampening across noisy packet metrics, while XGBoost (300 estimators with histogram-based binning) supplies precise bias reduction for difficult boundary distinctions. Balanced sample weighting counters class imbalance without introducing synthetic oversampling artifacts. On an independent test set of 394,168 flows, the ensemble achieves 99.88\% overall accuracy, a macro-averaged F1-score of 99.76\%, and sub-millisecond per-flow inference latency ($< 0.6$~ms).
 
@@ -299,7 +300,7 @@ The operational pipeline is deployed as a lightweight client-server application 
 
 % 8. Table of Contents
 \newpage
-\renewcommand{\contentsname}{CONTENTS}
+\renewcommand{\contentsname}{Contents}
 \tableofcontents
 
 %==================================================================================================================
@@ -827,7 +828,7 @@ The Real-Time Network Intrusion Detection and Alert System (NIDAS) employs a hyb
 
 \subsubsection*{Random Forest}
 
-Random Forest is a non-parametric ensemble learning method based on bootstrap aggregating (bagging) of unpruned or depth-constrained decision trees. During training, the algorithm constructs $B = 200$ individual classification trees using bootstrap samples drawn with replacement from the $1.58$ million training flows. At each node split, instead of evaluating all candidate dimensions across the feature space, a random subset of size $m = 0.4 \times 40 = 16$ features is sampled. Splitting criteria evaluate impurity reduction---such as Gini impurity, defined as $\text{Gini}(p) = 1 - \sum_{c=1}^{C} p_c^2$---to recursively partition the high-dimensional flow metric space. The final prediction for an input flow vector $x$ is formed by aggregating posterior probability distributions across all individual trees:
+Random Forest is a non-parametric ensemble learning method based on bootstrap aggregating (bagging) of unpruned or depth-constrained decision trees. During training, the algorithm constructs $B = 200$ individual classification trees using bootstrap samples drawn with replacement from the $1.58$ million training flows. At each node split, instead of evaluating all candidate dimensions across the feature space, a random subset of size $m = 0.4 \times 40 = 16$ features is sampled. Splitting criteria evaluate impurity reduction (such as Gini impurity, defined as $\text{Gini}(p) = 1 - \sum_{c=1}^{C} p_c^2$) to recursively partition the high-dimensional flow metric space. The final prediction for an input flow vector $x$ is formed by aggregating posterior probability distributions across all individual trees:
 \begin{equation}
 P_{\text{RF}}(y = c \mid x) = \frac{1}{B} \sum_{b=1}^{B} P_b(y = c \mid x)
 \end{equation}
@@ -895,7 +896,7 @@ Strengths: Synergistic fusion of complementary inductive biases, pairing the var
 
 Weaknesses: Increased memory overhead in deployment because both model binaries, feature scalers, and weight vectors must be held persistently in system memory; dual-model inference requires evaluating both tree ensembles, approximately doubling CPU processing time compared to a standalone classifier; inability to rectify errors when both base estimators share correlated blind spots against novel protocol exploits; and strict synchronization requirements to ensure identical feature ordering and preprocessing transformations across both underlying software frameworks.
 
-Scope of the algorithm with respect to this project: The soft-voting ensemble serves as the central operational intelligence core of the NIDAS system, bridging the divide between high-accuracy offline research and dependable real-time production deployment. A fundamental challenge in deploying intrusion detection systems is alert fatigue, where security operators become desensitized to warnings due to frequent false alarms. By requiring dual-model probabilistic consensus, the ensemble suppresses erratic predictions and delivers trustworthy classifications across the 40 extracted bidirectional flow features. Operating within an end-to-end evaluation latency of 0.5 to 1.2 milliseconds per flow, the ensemble directly drives downstream operational logic---assigning threat severity levels (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan), triggering real-time terminal UI feeds, and appending forensic records to alert\_log.csv without overwhelming network administrators with false alarms.
+Scope of the algorithm with respect to this project: The soft-voting ensemble serves as the central operational intelligence core of the NIDAS system, bridging the divide between high-accuracy offline research and dependable real-time production deployment. A fundamental challenge in deploying intrusion detection systems is alert fatigue, where security operators become desensitized to warnings due to frequent false alarms. By requiring dual-model probabilistic consensus, the ensemble suppresses erratic predictions and delivers trustworthy classifications across the 40 extracted bidirectional flow features. Operating within an end-to-end evaluation latency of 0.5 to 1.2 milliseconds per flow, the ensemble directly drives downstream operational logic by assigning threat severity levels (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan), triggering real-time terminal UI feeds, and appending forensic records to alert\_log.csv without overwhelming network administrators with false alarms.
 
 Justification: Fathima et al.\ (2024) demonstrate that high false positive rates are the central practical failure mode of IDS systems. Ensemble soft voting directly addresses this by averaging probability vectors, pulling inflated attack probability predictions back toward the correct class. Ji C et al.\ (2025) provide a direct benchmark on intrusion detection: their deep learning hybrid architecture achieves 99.79\% multi-class accuracy, while the proposed RF + XGBoost soft-voting ensemble achieves 99.94\% accuracy on the combined benchmark, confirming that the ensemble is highly competitive with architecturally complex deep models.
 
@@ -972,17 +973,17 @@ Backend API & FastAPI & 0.110+ \\
 \hline
 Dashboard Frontend & React JS & 18+ \\
 \hline
-Inference Interface & Web Dashboard / CLI & --- \\
+Inference Interface & Web Dashboard / CLI & N/A \\
 \hline
-Flow Feature Extraction & Custom CICFlowMeter & --- \\
+Flow Feature Extraction & Custom CICFlowMeter & N/A \\
 \hline
-Development IDE & VS Code & --- \\
+Development IDE & VS Code & N/A \\
 \hline
 \end{tabularx}
 \caption{Software Environment}
 \label{tab:software}
 \end{table}
-
+\newpage
 \subsection{Hardware Environment}
 
 Model training and system development were performed on a local machine with the following specifications:
@@ -1273,8 +1274,6 @@ The trained ensemble is deployed as an end-to-end real-time intrusion detection 
 
 \section{Model Implementation}
 
-\subsection{Architecture of the Custom Flow Extraction Engine}
-
 Network packets captured at the socket or network interface card (NIC) layer arrive as discrete, unorganized frames. To transform raw packet streams into the structured 40-dimensional feature vectors expected by the ensemble, a custom, lightweight Python reimplementation of CICFlowMeter was engineered into the pipeline.
 
 The flow generator tracks active communication sessions using a bidirectional 5-tuple hash key comprising:
@@ -1288,8 +1287,6 @@ To maintain constant memory bounds during high-throughput network monitoring, th
     \item \textbf{Idle Timeout ($T_{\text{idle}} = 5\text{ s}$):} If no packets are observed across a flow for five consecutive seconds, the connection is deemed terminated (or abandoned), triggered for feature finalization, and dispatched to the inference queue.
     \item \textbf{Active Timeout ($T_{\text{active}} = 120\text{ s}$):} Sustained connections that transmit packets continuously without idle gaps (such as large file transfers or volumetric DoS/DDoS flooding) are forcibly flushed every 120 seconds. This prevents long-lived flows from delaying attack detection and eliminates unbounded cache memory growth.
 \end{enumerate}
-
-\subsection{Online Metric Computation via Welford's Algorithm}
 
 Buffering thousands of individual packet payloads to compute statistical properties (such as mean and variance of packet lengths and inter-arrival times) is computationally prohibitive at line rate. To achieve sub-millisecond execution with a memory footprint under 45 MB, the custom flow generator implements Welford's algorithm for numerically stable, single-pass computation of running statistics.
 
@@ -1306,8 +1303,6 @@ The sample variance and standard deviation are retrieved instantaneously upon fl
 \end{equation}
 This allows forward, backward, and global packet length and inter-arrival time statistics to be maintained with constant $O(1)$ time complexity per packet and zero raw payload buffering.
 
-\subsection{Inference Pipeline and Alert Generation}
-
 Upon flow termination, the finalized record is handed over to the Python inference pipeline. The execution sequence follows five deterministic stages:
 \begin{enumerate}
     \item \textbf{Feature Ordering and Alignment:} The 40 extracted metrics are mapped into the exact sequential feature ordering established during offline model training.
@@ -1316,8 +1311,6 @@ Upon flow termination, the finalized record is handed over to the Python inferen
     \item \textbf{Threat Severity Assignment:} If the argmax prediction corresponds to an anomaly, a threat record is generated assigning a calibrated severity rating (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan).
     \item \textbf{Audit Logging and Telemetry Dispatch:} Telemetry containing timestamps, socket addresses, predicted classifications, model votes, and confidence scores is appended to alert\_log.csv for forensic auditability, while simultaneously streaming to the terminal CLI and web dashboard.
 \end{enumerate}
-
-\subsection{Live Capture Optimization and Flow Responsiveness}
 
 Deploying the inference pipeline on live network interfaces revealed several operational considerations that do not arise during offline dataset processing. Specific engineering adjustments were implemented to ensure system responsiveness and prevent false alarms:
 
@@ -1379,7 +1372,7 @@ The repository follows a single-branch linear development workflow on the \textt
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth]{git.png}
+\includegraphics[width=0.95\textwidth]{git.png}
 \caption{Git Repository}
 \label{fig:git_repo}
 \end{figure}
@@ -1436,7 +1429,7 @@ While the NIDAS implementation establishes a complete and validated operational 
 
 \section{Continual Learning and Adaptive Concept Drift Mitigation}
 
-A persistent challenge in production intrusion detection is concept drift, where network traffic distributions evolve dynamically due to new software deployments, operating system updates, and evolving adversary tactics. In the current architecture, model retraining is conducted offline using curated historical partitions. Future iterations should incorporate streaming continual learning mechanisms, such as Hoeffding Adaptive Trees and experience-replay buffers, allowing the base estimators to assimilate incremental updates from validated live traffic without suffering from catastrophic forgetting. Furthermore, integrating statistical divergence monitors---such as the Population Stability Index (PSI) and Wasserstein distance computed over rolling windows of flow inter-arrival times---would enable automated triggering of localized retraining routines whenever significant distribution shifts are detected.
+A persistent challenge in production intrusion detection is concept drift, where network traffic distributions evolve dynamically due to new software deployments, operating system updates, and evolving adversary tactics. In the current architecture, model retraining is conducted offline using curated historical partitions. Future iterations should incorporate streaming continual learning mechanisms, such as Hoeffding Adaptive Trees and experience-replay buffers, allowing the base estimators to assimilate incremental updates from validated live traffic without suffering from catastrophic forgetting. Furthermore, integrating statistical divergence monitors (such as the Population Stability Index (PSI) and Wasserstein distance computed over rolling windows of flow inter-arrival times) would enable automated triggering of localized retraining routines whenever significant distribution shifts are detected.
 
 \section{Explainable AI (XAI) and Real-Time SHAP Attributions}
 
@@ -1514,117 +1507,6 @@ GPU & Not required & Not required & Client deployment executes purely CPU-based 
 \end{table}
 
 \newpage
-\section{Feature Pruning and Dimensionality Reduction Audit Log}
-
-To guarantee training reproducibility and document pipeline hygiene, Table~\ref{tab:feature_pruning_audit} details the complete dimensional reduction audit log. The pipeline filtered the original 77 raw flow features down to the finalized 40-feature operational space across five sequential stages.
-
-\begin{table}[H]
-\centering
-\small
-\renewcommand{\arraystretch}{1.08}
-\begin{tabularx}{\textwidth}{|p{3.2cm}|p{4.2cm}|X|}
-\hline
-\textbf{Refinement Stage} & \textbf{Pruned Features} & \textbf{Engineering and Statistical Rationale} \\
-\hline
-Stage 1: Zero-Variance Pruning & Bwd PSH Flags, Bwd URG Flags, Fwd Avg Bytes/Bulk, Fwd Avg Packets/Bulk, Fwd Avg Bulk Rate, Bwd Avg Bytes/Bulk, Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate & Constant zero values across all 9.1M benchmark flows; zero variance provides zero discriminative information. \\
-\hline
-Stage 2: Collinearity Filtering ($r > 0.98$) & Fwd IAT Total, Subflow Fwd Packets, Subflow Bwd Packets, Subflow Fwd Bytes, Subflow Bwd Bytes, Avg Fwd Segment Size, Avg Bwd Segment Size, Fwd PSH Flags, Fwd URG Flags, ECE Flag Count, Average Packet Size, Fwd IAT Max, Fwd Packets/s, Idle Max, Idle Min, Down/Up Ratio & Severe linear multi-collinearity ($r > 0.98$); redundant metrics inflate model variance and distort tree split probabilities without providing novel information. \\
-\hline
-Stage 3: Non-Parametric Significance & CWE Flag Count & Kruskal-Wallis $H$-test revealed no statistically significant divergence across classes ($p = 0.612 > 0.05$). \\
-\hline
-Stage 4: Low-Importance Impurity Pruning & URG Flag Count, Active Mean, Active Min, Idle Std, Active Std, SYN Flag Count & Lowest 10\% quantile of Mean Decrease in Impurity (MDI) scores from preliminary Random Forest baseline. \\
-\hline
-Stage 5: Domain Generalization Pruning & Destination Port, Packet Length Variance, Total Length of Bwd Packets, Bwd Packet Length Min, Fwd IAT Mean, Bwd IAT Mean & Pruned Destination Port to eliminate memorization of static service ports; Packet Length Variance is mathematically redundant with Std; remaining features displayed strong collinearity with primary volume metrics. \\
-\hline
-\end{tabularx}
-\caption{Feature Selection and Dimensionality Reduction Audit Log}
-\label{tab:feature_pruning_audit}
-\end{table}
-\newpage
-\section{Operational Incident Telemetry Schema and Real Event Log}
-
-During real-time packet capture, every completed flow generates an audit telemetry entry recorded in the operational output log. Table~\ref{tab:telemetry_schema} outlines the schema fields, and Table~\ref{tab:sample_telemetry} presents five actual flows captured and evaluated during live deployment testing, drawn from the recorded network traces in live\_test.csv and tes.csv.
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.2}
-\begin{tabularx}{\textwidth}{|p{3.8cm}|p{2.8cm}|X|}
-\hline
-\textbf{Field Name} & \textbf{Data Type} & \textbf{Description} \\
-\hline
-timestamp & ISO 8601 String & UTC timestamp of flow classification and alert generation. \\
-\hline
-flow\_id & String & Unique hash identifying the bidirectional network connection. \\
-\hline
-source\_ip & IPv4 String & Originating IP address of the communication initiator. \\
-\hline
-destination\_ip & IPv4 String & Target IP address of the monitored network host. \\
-\hline
-destination\_port & Integer & Target port service (e.g., 80 for HTTP, 53 for DNS, 68 for DHCP). \\
-\hline
-protocol & String & Transport protocol identifier (TCP or UDP). \\
-\hline
-predicted\_class & Categorical & Output classification (Normal, DoS, DDoS, Port Scan, Brute Force). \\
-\hline
-severity\_level & Categorical & Assigned threat level: Normal, Medium, High, or Critical. \\
-\hline
-rf\_prob & Float & Posterior probability estimate from Random Forest base estimator. \\
-\hline
-xgb\_prob & Float & Posterior probability estimate from XGBoost base estimator. \\
-\hline
-ensemble\_confidence & Float & Consensus soft-voting probability assigned to predicted class. \\
-\hline
-\end{tabularx}
-\caption{Audit Telemetry Data Schema (alert\_log.csv)}
-\label{tab:telemetry_schema}
-\end{table}
-
-\newpage
-\begin{table}[H]
-\centering
-\small
-\renewcommand{\arraystretch}{1.18}
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{3.3cm}|c|c|c|c|>{\raggedright\arraybackslash}X|}
-\hline
-\textbf{Timestamp} & \textbf{Socket Pair} & \textbf{Proto} & \textbf{Prediction} & \textbf{Severity} & \textbf{Conf.} & \textbf{Model Details} \\
-\hline
-23:04:12 & 192.168.1.34:53244 \newline $\rightarrow$ 8.8.8.8:53 & UDP & Normal & Normal & 92.5\% & Live DNS query; 1 pkt forward (69 B), 1 pkt backward (179 B); 25.4 ms duration. \\
-\hline
-23:04:17 & 192.168.1.34:45350 \newline $\rightarrow$ 192.168.1.37:80 & TCP & Normal & Normal & 99.8\% & Live HTTP session; 5 pkts forward (335 B), 5 pkts backward (411 B); 9 TCP flags. \\
-\hline
-23:04:29 & 192.168.1.34:49410 \newline $\rightarrow$ 142.250.190.46:443 & TCP & Normal & Normal & 99.9\% & Interactive HTTPS session; 11 pkts fwd (984 B), 11 pkts bwd (5184 B); 13.0 KB/s. \\
-\hline
-23:04:45 & 192.168.1.34:49412 \newline $\rightarrow$ 142.250.190.46:443 & TCP & Normal & Normal & 99.7\% & Graceful TLS teardown; 7 pkts fwd (733 B), 8 pkts bwd (746 B); FIN/ACK handshake. \\
-\hline
-23:04:58 & 192.168.1.34:5355 \newline $\rightarrow$ 224.0.0.252:5355 & UDP & Normal & Normal & 94.1\% & Link-local LLMNR resolution; 2 pkts fwd (138 B); non-routable filter audit pass. \\
-\hline
-23:05:02 & 0.0.0.0:68 \newline $\rightarrow$ 255.255.255.255:67 & UDP & DoS & Critical & 90.2\% & Sustained DHCP renew flood; 4 pkts fwd (1312 B), duration 55.5 s, zero reply. \\
-\hline
-23:05:28 & 192.168.1.15:68 \newline $\rightarrow$ 192.168.1.1:67 & UDP & DoS & Critical & 93.3\% & Fast packet burst; 231.6 pkts/s, duration 17.3 ms, 1312 forward bytes, zero reply. \\
-\hline
-23:05:46 & 185.220.101.4:54321 \newline $\rightarrow$ 192.168.1.37:80 & TCP & DDoS & Critical & 98.7\% & Volumetric SYN flood; 42 pkts fwd (2520 B), 0 bwd pkts, inter-arrival time $< 10\,\mu$s. \\
-\hline
-23:06:05 & 192.168.1.110:51240 \newline $\rightarrow$ 192.168.1.37:2220 & TCP & Brute Force & High & 96.4\% & High-frequency auth attempts; 18 connection resets, uniform small payload sizes. \\
-\hline
-23:06:14 & 192.168.1.42:58432 \newline $\rightarrow$ 192.168.1.20:* & TCP & Port Scan & Medium & 95.0\% & Cross-flow rule trigger; 18 unique destination ports contacted within 60 s window. \\
-\hline
-\end{tabularx}
-\caption{Real Captured Flow Events and Incident Telemetry Log Excerpt}
-\label{tab:sample_telemetry}
-\end{table}
-
-\newpage
-\subsection{Operational Analysis of Real Incident Telemetry}
-
-The telemetry records documented in Table~\ref{tab:sample_telemetry} demonstrate the operational behavior of the detection pipeline across benign sessions, volumetric rate anomalies, and multi-flow reconnaissance activities:
-
-\begin{enumerate}
-    \item \textbf{Benign Baseline Validation:} Standard application communications (such as DNS resolution on port 53, HTTP transactions on port 80, and encrypted HTTPS sessions on port 443) maintain balanced bidirectional packet flows with regular TCP control flag sequences (PSH, ACK, FIN) and proportional byte transfer volumes. The ensemble assigns confidence values exceeding 99\% to these sessions, validating that routine enterprise workstation traffic passes through without generating spurious security alarms.
-    \item \textbf{Infrastructure Noise Suppression:} Operational background frames such as Link-Local Multicast Name Resolution (LLMNR on port 5355) and Multicast DNS (mDNS on port 5353) exchange small local broadcast packets. Because these frames are captured on live network interfaces but never appear in external network datasets, evaluating them directly with machine learning models frequently resulted in false-positive classifications. The system's pre-prediction filter screens these non-routable local addresses, logging the flows for forensic tracking while bypassing the prediction engine.
-    \item \textbf{Directional Asymmetry in Denial of Service:} Both the sustained and rapid-burst DoS anomalies captured on port 68 exhibit severe directional asymmetry, with four forward packets totaling 1,312 bytes and zero backward response. In the rapid-burst scenario, the flow duration collapsed to 17.3 milliseconds, producing an intense delivery rate of 231.6 packets per second. This sharp statistical deviation immediately triggers a Critical severity classification, providing operators with instantaneous alerts during volumetric resource exhaustion attacks.
-    \item \textbf{Cross-Flow Correlation and Alert Deduplication:} Because individual port scan probes often resemble benign connection attempts when evaluated in isolation, single-flow machine learning models can overlook distributed reconnaissance. The sliding-window detector tracks unique destination ports per source IP over a 60-second horizon. When host 192.168.1.42 crossed the 15-port threshold by probing 18 distinct ports, the system elevated the incident to a Medium-severity Port Scan. Subsequent probes from the same source during the active episode were recorded in the audit CSV while suppressing duplicate alert popups, mitigating operator notification fatigue.
-\end{enumerate}
 
 %------------------------------------------------------------------------------------------------------------------
 

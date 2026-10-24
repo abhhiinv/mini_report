@@ -26,7 +26,7 @@
 \contentsline {subsection}{\numberline {3.6.3}Operational Feasibility}{37}{}%
 \contentsline {section}{\numberline {3.7}System Environment}{37}{}%
 \contentsline {subsection}{\numberline {3.7.1}Software Environment}{37}{}%
-\contentsline {subsection}{\numberline {3.7.2}Hardware Environment}{37}{}%
+\contentsline {subsection}{\numberline {3.7.2}Hardware Environment}{38}{}%
 \contentsline {chapter}{\numberline {4}System Design}{39}{}%
 \contentsline {section}{\numberline {4.1}Model Building}{39}{}%
 \contentsline {subsection}{\numberline {4.1.1}Implementation Code}{39}{}%
@@ -42,11 +42,7 @@
 \contentsline {section}{\numberline {5.5}Discussion}{51}{}%
 \contentsline {chapter}{\numberline {6}Model Deployment}{52}{}%
 \contentsline {section}{\numberline {6.1}Model Implementation}{52}{}%
-\contentsline {subsection}{\numberline {6.1.1}Architecture of the Custom Flow Extraction Engine}{52}{}%
-\contentsline {subsection}{\numberline {6.1.2}Online Metric Computation via Welford's Algorithm}{52}{}%
-\contentsline {subsection}{\numberline {6.1.3}Inference Pipeline and Alert Generation}{53}{}%
-\contentsline {subsection}{\numberline {6.1.4}Live Capture Optimization and Flow Responsiveness}{54}{}%
-\contentsline {section}{\numberline {6.2}UI Design}{55}{}%
+\contentsline {section}{\numberline {6.2}UI Design}{54}{}%
 \contentsline {chapter}{\numberline {7}Git History}{57}{}%
 \contentsline {chapter}{\numberline {8}Conclusions}{58}{}%
 \contentsline {section}{\numberline {8.1}Implementation of the Real-Time IDS Pipeline}{58}{}%
@@ -62,7 +58,4 @@
 \contentsline {chapter}{\numberline {10}Appendix}{63}{}%
 \contentsline {section}{\numberline {10.1}Minimum Software Requirements}{63}{}%
 \contentsline {section}{\numberline {10.2}Minimum Hardware Requirements}{64}{}%
-\contentsline {section}{\numberline {10.3}Feature Pruning and Dimensionality Reduction Audit Log}{65}{}%
-\contentsline {section}{\numberline {10.4}Operational Incident Telemetry Schema and Real Event Log}{66}{}%
-\contentsline {subsection}{\numberline {10.4.1}Operational Analysis of Real Incident Telemetry}{68}{}%
-\contentsline {chapter}{\numberline {11}References}{69}{}%
+\contentsline {chapter}{\numberline {11}References}{65}{}%

@@ -24,7 +24,4 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {10.1}{\ignorespaces Minimum Software Requirements}}{63}{}%
 \contentsline {table}{\numberline {10.2}{\ignorespaces Minimum Hardware Requirements}}{64}{}%
-\contentsline {table}{\numberline {10.3}{\ignorespaces Feature Selection and Dimensionality Reduction Audit Log}}{65}{}%
-\contentsline {table}{\numberline {10.4}{\ignorespaces Audit Telemetry Data Schema (alert\_log.csv)}}{66}{}%
-\contentsline {table}{\numberline {10.5}{\ignorespaces Real Captured Flow Events and Incident Telemetry Log Excerpt}}{67}{}%
 \addvspace {10\p@ }
