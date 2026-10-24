@@ -14,21 +14,21 @@
 \contentsline {figure}{\numberline {3.11}{\ignorespaces Flowchart of XGBoost}}{31}{}%
 \contentsline {figure}{\numberline {3.12}{\ignorespaces Project Pipeline}}{34}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Feature Selection and Preprocessing}}{39}{}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Scaling and Label Encoding}}{40}{}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Data Partitioning and Class-Weight Adjustment Code}}{41}{}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Base Classifier Implementation Code (Random Forest and XGBoost)}}{42}{}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Ensemble Code}}{43}{}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Top 20 Random Forest Feature Importances}}{44}{}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Model Evaluation Code (Classification Report and Confusion Matrix)}}{46}{}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Feature Selection and Preprocessing}}{40}{}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Scaling and Label Encoding}}{41}{}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Data Partitioning and Class-Weight Adjustment Code}}{42}{}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Base Classifier Implementation Code (Random Forest and XGBoost)}}{43}{}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Ensemble Code}}{44}{}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Top 20 Random Forest Feature Importances}}{45}{}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Model Evaluation Code (Classification Report and Confusion Matrix)}}{47}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Confusion Matrix - Ensemble (Test Set)}}{48}{}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Per-Class Classification Metrics Heatmap - Ensemble}}{50}{}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Confusion Matrix - Ensemble (Test Set)}}{49}{}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Per-Class Classification Metrics Heatmap - Ensemble}}{51}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Detailed Flow Inspection and Class Probability Distribution}}{55}{}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Real-Time Network Intrusion Monitoring Dashboard}}{56}{}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Detailed Flow Inspection and Class Probability Distribution}}{56}{}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Real-Time Network Intrusion Monitoring Dashboard}}{57}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Git Repository}}{57}{}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Git Repository}}{58}{}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

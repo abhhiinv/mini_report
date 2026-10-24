@@ -11,7 +11,7 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{graphicx}
-\graphicspath{{figures/}{./}}
+\graphicspath{{figures/}{report/figures/}{./}{report/}}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{subcaption}
@@ -65,9 +65,9 @@ headheight=16pt
 % Table of Contents & Lists Spacing
 %--------------------------------
 \usepackage[titles]{tocloft}
-\setlength{\cftbeforechapskip}{4pt}      % Gap before chapter entries in TOC
-\setlength{\cftbeforesecskip}{2pt}       % Gap before section entries in TOC
-\setlength{\cftbeforesubsecskip}{1pt}    % Gap before subsection entries in TOC
+\setlength{\cftbeforechapskip}{2.5pt}      % Gap before chapter entries in TOC
+\setlength{\cftbeforesecskip}{1.5pt}       % Gap before section entries in TOC
+\setlength{\cftbeforesubsecskip}{0.5pt}    % Gap before subsection entries in TOC
 \setlength{\cftbeforefigskip}{3pt}       % Gap between figure entries in LOF
 \setlength{\cftbeforetabskip}{3pt}       % Gap between table entries in LOT
 
@@ -187,7 +187,7 @@ headheight=16pt
 {\fontsize{13}{17}\selectfont \textbf{KOTHAMANGALAM}}\\[0.25em]
 {\fontsize{11}{14}\selectfont \textbf{(Government Aided Autonomous Institution)}}\\[1.0cm]
 
-\includegraphics[height=4.0cm]{figures/mace_logo.png}\\[1.0cm]
+\includegraphics[height=4.0cm]{mace_logo.png}\\[1.0cm]
 
 {\fontsize{14}{18}\selectfont \textbf{Department of Computer Applications}}\\[0.4em]
 {\fontsize{13}{16}\selectfont Mini Project Report}\\[0.9cm]
@@ -214,9 +214,9 @@ headheight=16pt
 {\fontsize{13}{17}\selectfont \textbf{KOTHAMANGALAM}}\\[0.2em]
 {\fontsize{10.5}{13.5}\selectfont \textbf{(Government Aided Autonomous Institution)}}\\[0.6cm]
 
-\includegraphics[height=4cm]{figures/mace_logo.png}\\[0.8cm]
-
 {\fontsize{15}{19}\selectfont \textbf{CERTIFICATE}}\\[0.6cm]
+
+\includegraphics[height=4cm]{mace_logo.png}\\[0.8cm]
 
 {\fontsize{13}{17}\selectfont \textbf{Real-Time Network Intrusion Detection and Alert System}}\\[0.6cm]
 
@@ -230,10 +230,10 @@ headheight=16pt
 
 \noindent
 \begin{tabular}{@{}p{0.55\textwidth}r@{}}
-\textbf{Dr.~Sonia Abraham} & \textbf{Dr.~Sonia Abraham} \\
-Faculty Guide & Head of the Department \\[1.5cm]
-\textbf{Dr.~Manu John} & \textbf{Internal Examiners} \\
-Project Coordinator & \\
+Dr.~Sonia Abraham & Dr.~Sonia Abraham \\
+\textbf{Faculty Guide} & \textbf{Head of the Department} \\[2cm]
+Dr.~Manu John \\
+\textbf{Project Coordinator} & \textbf{Internal Examiners} \\
 \end{tabular}
 \end{center}
 
@@ -272,7 +272,8 @@ Finally, I express my deepest appreciation to my parents, family members, and fr
 
 \vspace{1.5cm}
 \begin{flushright}
-\textbf{Abhinav Sajeev}
+\textbf{Abhinav Sajeev} \\
+\textbf{MAC25MCA-2002}
 \end{flushright}
 
 % 5. Abstract
@@ -300,8 +301,11 @@ The operational pipeline is deployed as a lightweight client-server application 
 
 % 8. Table of Contents
 \newpage
+\pagestyle{empty}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \renewcommand{\contentsname}{Contents}
 \tableofcontents
+\clearpage
 
 %==================================================================================================================
 % MAIN BODY (Arabic Page Numbering & Full Running Headers/Footers)
@@ -906,29 +910,64 @@ In summary, each of the three algorithms fulfills a distinct, complementary func
 
 \subsection{Project Pipeline Diagram and Development Plan}
 
-The NIDAS system is organised into seven functional stages, from raw traffic acquisition through to real-time alert generation and output delivery. Figure~\ref{fig:pipeline} illustrates the complete end-to-end architecture:
+The NIDAS system is organised into six functional stages, spanning data acquisition, preprocessing, ensemble model training, multi-metric evaluation, real-time prediction, and alert generation with output delivery. Figure~\ref{fig:pipeline} illustrates the complete end-to-end architecture:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{newpipeline.png}
+\includegraphics[width=1\textwidth,height=18cm,keepaspectratio]{nidas_workflow.pdf}
 \caption{Project Pipeline}
 \label{fig:pipeline}
 \end{figure}
 \newpage
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Data Acquisition:} The system integrates 9,117,071 raw flow records from the CIC-IDS2017 and CSE-CIC-IDS2018 benchmarks, capturing 77 initial numeric flow characteristics and target metadata. After deduplication, cleaning, and subsampling, a curated benchmark of 1,799,905 flow records is established (59.12\% from 2018 and 40.88\% from 2017) to provide robust multi-environment representation. In deployment, a custom Python CICFlowMeter engine captures live packets from network sockets/PCAP and extracts the identical 40 bidirectional flow features in real time.
-    
-    \item \textbf{Data Preprocessing and Preparation:} The raw corpus undergoes zero-variance removal (dropping 8 constant features, reducing 77 to 69 dimensions), conversion of $\pm\infty$ values to NaN and dropping of 26,026 corrupted rows, and deduplication of 2,263,887 duplicate records. Labels are harmonized into five core classes (Normal Traffic, DoS, DDoS, Brute Force, and Port Scan) while peripheral attack classes are excluded. Benign records are subsampled at 15\% (887,162 flows) and merged with 100\% of attack records. A four-stage feature refinement process ($69 \rightarrow 53 \rightarrow 52 \rightarrow 46 \rightarrow 40$) eliminates collinear and domain-sensitive features. Categorical labels are encoded using LabelEncoder ($0$--$4$), inputs are normalized using RobustScaler fitted exclusively on the training split, and discriminative feature weights ($3.0\times$, $2.0\times$, $1.0\times$) and balanced sample weights are computed.
-    
-    \item \textbf{Train / Model Building (Ensemble):} An 80\% stratified training partition ($\approx 1.58$ million flows) is used to train the base estimators. Random Forest (200 trees, max\_depth=10, max\_features=0.4) and XGBoost (300 estimators, max\_depth=6, learning\_rate=0.1, GPU histogram method) are fitted independently using the precomputed balanced sample weights on the weighted feature space. The soft-voting ensemble is constructed by combining the pre-fitted estimators to compute probability averages across both models. Serialized model artifacts (ensemble\_model.pkl, scaler.pkl, label\_encoder.pkl, and feature\_weights.pkl) are generated.
-    
-    \item \textbf{Model Evaluation and Comparison:} The trained ensemble is evaluated on the held-out 20\% test partition (394,168 unseen flows). Comprehensive multi-class evaluation metrics are computed, including overall Accuracy (99.94\%), Macro F1 (0.9994), Weighted F1 (0.9994), per-class Precision, Recall, and F1-scores, as well as operational False Positive Rates (0.021\% on benign traffic) and False Negative Rates. Standalone Random Forest and XGBoost baselines are benchmarked against the soft-voting ensemble.
-    
-    \item \textbf{Final Model Saving:} The trained ensemble artifacts are serialized directly from the 80\% training split. To preserve empirical validity and prevent unverified data leakage, the models are not retrained on the full dataset, ensuring that all production artifacts strictly reflect the validated test partition boundaries.
-    
-    \item \textbf{Deployment and Real-Time Prediction:} In the operational deployment pipeline, live network traffic is captured via network sockets. The custom CICFlowMeter reassembles packets into bidirectional flows, extracts the 40 flow features, and formats them in the exact column ordering expected by the model. The real-time preprocessing stage verifies finite values, applies the pre-fitted RobustScaler, scales features using the discriminative weight vector, and executes soft-voting inference across both base models to yield the predicted attack class and confidence score.
-    
-    \item \textbf{Alert Generation and System Output:} If the predicted class is anomalous, the system assigns a severity rating (Critical for DDoS and DoS, High for Brute Force, Medium for Port Scan). Telemetry is appended to a persistent audit log (alert\_log.csv) containing timestamps, predicted classes, severity ratings, individual model votes, and confidence scores. Real-time notifications and colored feeds are surfaced through both a terminal CLI and the asynchronous FastAPI WebSocket backend to the interactive React JS SOC monitoring dashboard.
+    \item \textbf{Stage 1: Data Acquisition:} The data acquisition pipeline incorporates both historical benchmark ingestion and live packet capture:
+    \begin{itemize}[leftmargin=*,itemsep=2pt,topsep=2pt]
+        \item \textbf{Benchmark Corpus:} The offline development corpus integrates 9,117,071 raw flow records from the combined CIC-IDS2017 and CSE-CIC-IDS2018 datasets, capturing 77 numeric flow characteristics and associated network metadata.
+        \item \textbf{Curated Benchmark Records:} Following preprocessing and filtering, a curated benchmark of 1,799,905 flow records is established. This multi-environment dataset comprises 59.12\% records from CSE-CIC-IDS2018 and 40.88\% from CIC-IDS2017, providing diverse cross-environment network behaviors that prevent single-network overfitting.
+        \item \textbf{Live Capture Engine:} In parallel, the production pipeline deploys a custom Python CICFlowMeter engine that captures live packet streams from network interface sockets or offline PCAP dumps. It extracts 40 bidirectional flow features and generates structured flow records matching the model schema.
+    \end{itemize}
+
+    \item \textbf{Stage 2: Preprocessing:} Raw flow attributes undergo systematic curation, normalization, and balancing:
+    \begin{itemize}[leftmargin=*,itemsep=2pt,topsep=2pt]
+        \item \textbf{Label and Class Selection:} Attack variants across both datasets are mapped into five operational traffic categories: Normal Traffic, DoS, DDoS, Brute Force, and Port Scan. Low-volume peripheral categories (Bot, Infiltration, Web Attacks, and Heartbleed) are excluded to ensure robust per-class statistical support.
+        \item \textbf{Benign Subsampling:} Benign records are subsampled at a 15\% ratio (yielding 887,162 records) and combined with 100\% of the curated attack records (912,743 flows), establishing the balanced 1,799,905-record benchmark corpus.
+        \item \textbf{Feature Scaling:} Numerical features are scaled using RobustScaler fitted exclusively on the training partition, utilizing median and interquartile range statistics to insulate the models from extreme network burst outliers without data leakage.
+        \item \textbf{Feature and Sample Weighting:} Multi-tiered feature weights ($3.0\times$ for 6 high-importance features, $2.0\times$ for 11 medium-importance features, and $1.0\times$ for all remaining features) amplify separation across attack families. Simultaneously, balanced per-sample weights are computed dynamically to penalize minority attack errors heavily during training.
+    \end{itemize}
+
+    \item \textbf{Stage 3: Model Training:} The supervised training pipeline builds and serializes the ensemble architecture:
+    \begin{itemize}[leftmargin=*,itemsep=2pt,topsep=2pt]
+        \item \textbf{Stratified Training Partition:} An 80\% stratified training split containing approximately 1.44 million records is established using a fixed random\_state of 42 to guarantee deterministic reproducibility while preserving exact class proportions.
+        \item \textbf{Random Forest Classifier:} Trained on the weighted feature space with balanced sample weights, configured with 200 estimators, a maximum tree depth of 10, min\_samples\_split of 5, and max\_features of 0.4.
+        \item \textbf{XGBoost Classifier:} Trained independently with sample weights on the weighted feature space, configured with 300 estimators, maximum tree depth of 6, learning rate of 0.1, L1/L2 regularization, and GPU-accelerated histogram binning.
+        \item \textbf{Soft-Voting Ensemble:} The independently fitted Random Forest and XGBoost estimators are unified into a VotingClassifier using soft voting, which averages predicted class probability vectors to combine variance reduction with gradient-boosted boundary precision.
+        \item \textbf{Model Artifacts:} Four production artifacts are serialized directly from the training split: ensemble\_model.pkl (the soft-voting ensemble), scaler.pkl (the pre-fitted RobustScaler), label\_encoder.pkl (the categorical label encoder), and feature\_weights.pkl (the discriminative feature weights).
+    \end{itemize}
+
+    \item \textbf{Stage 4: Evaluation:} The trained classifiers undergo multi-metric benchmarking:
+    \begin{itemize}[leftmargin=*,itemsep=2pt,topsep=2pt]
+        \item \textbf{Testing Partition:} Performance is evaluated on the held-out 20\% stratified test partition containing 394,168 unseen flow records.
+        \item \textbf{Evaluation Metrics:} Comprehensive evaluation spans multi-class Accuracy (99.94\%), macro and weighted Precision, Recall, and F1-scores, alongside operational False Positive Rates (0.021\% on benign traffic) and False Negative Rates.
+        \item \textbf{Model Comparison:} Systematic comparative benchmarking validates standalone Random Forest and standalone XGBoost against the Soft-Voting Ensemble, confirming the ensemble's superior generalizability and noise resistance.
+    \end{itemize}
+
+    \item \textbf{Stage 5: Real-Time Prediction:} The operational detection pipeline processes incoming traffic through sequential stages:
+    \begin{itemize}[leftmargin=*,itemsep=2pt,topsep=2pt]
+        \item \textbf{Live Packet Capture:} Packet streams are sniffed continuously from raw network sockets or read from PCAP capture files.
+        \item \textbf{CICFlowMeter Reassembly:} Packet headers are parsed, bidirectional TCP/UDP connection tuples are tracked, and 40 flow features are extracted dynamically upon flow termination or timeout.
+        \item \textbf{Feature Vector Alignment:} Extracted flow characteristics are structured into a 40-dimensional vector strictly aligned with the model input schema.
+        \item \textbf{Real-Time Preprocessing:} Handles potential missing or infinite values, applies the saved RobustScaler normalization, and multiplies features by the static discriminative weight vector.
+        \item \textbf{Ensemble Inference:} Evaluates the scaled feature vector through the Random Forest and XGBoost ensemble, using soft voting to compute posterior class probabilities.
+        \item \textbf{Prediction Output:} Generates the definitive classification label (Normal Traffic versus attack class) accompanied by an associated confidence score.
+    \end{itemize}
+
+    \item \textbf{Stage 6: Alert and Output:} Threat intelligence is formatted, recorded, and delivered:
+    \begin{itemize}[leftmargin=*,itemsep=2pt,topsep=2pt]
+        \item \textbf{Prediction Result:} Distinguishes between benign traffic flows and active malicious attacks.
+        \item \textbf{Severity Assignment:} Assigns priority tiers based on operational threat severity: Critical for volumetric flood attacks (DDoS and DoS), High for credential exploitation (Brute Force), and Medium for reconnaissance activity (Port Scan).
+        \item \textbf{Alert Logging:} Telemetry is appended to a persistent audit log (alert\_log.csv), recording timestamps, attack categories, severity ratings, confidence scores, individual estimator predictions, and alert trigger flags.
+        \item \textbf{User Interface:} Alerts are surfaced immediately via color-coded terminal banners and transmitted through an asynchronous FastAPI WebSocket server to a real-time React JS security operations monitoring dashboard.
+    \end{itemize}
 \end{enumerate}
 
 \section{Feasibility Analysis}
@@ -1013,6 +1052,7 @@ The GPU was utilised during XGBoost training via the tree\_method='hist' configu
 %------------------------------------------------------------------------------------------------------------------
 
 \newpage
+\addtocontents{toc}{\protect\newpage}
 \chapter{System Design}
 
 \section{Model Building}
@@ -1048,8 +1088,8 @@ To address class imbalance, balanced per-sample weights are computed using compu
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.72\textwidth]{image13.png}\\[1ex]
-\includegraphics[width=0.78\textwidth]{image14.png}
+\includegraphics[width=0.85\textwidth]{image13.png}\\[1ex]
+\includegraphics[width=1\textwidth]{image14.png}
 \caption{Data Partitioning and Class-Weight Adjustment Code}
 \label{fig:data_prep_code}
 \end{figure}
@@ -1064,8 +1104,8 @@ The XGBoost classifier is initialized with n\_estimators=300, max\_depth=6, lear
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.72\textwidth]{image15.png}\\[1ex]
-\includegraphics[width=0.72\textwidth]{image16.png}
+\includegraphics[width=0.75\textwidth]{image15.png}\\[1ex]
+\includegraphics[width=1\textwidth]{image16.png}
 \caption{Base Classifier Implementation Code (Random Forest and XGBoost)}
 \label{fig:base_classifiers_code}
 \end{figure}
@@ -1074,7 +1114,7 @@ Both classifiers are trained independently on the full 40-feature, weighted Robu
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{image18.png}
+\includegraphics[width=0.95\textwidth]{image18.png}
 \caption{Ensemble Code}
 \label{fig:ensemble_code}
 \end{figure}
@@ -1083,7 +1123,7 @@ Feature importance scores are extracted from the Random Forest component and plo
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{feature_importance_top20.png}
+\includegraphics[width=0.85\textwidth]{feature_importance_top20.png}
 \caption{Top 20 Random Forest Feature Importances}
 \label{fig:rf_feat_importance}
 \end{figure}
@@ -1132,8 +1172,8 @@ The trained ensemble is evaluated on the held-out 20\% test split, which contain
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.82\textwidth]{image20.png}\\[1.5ex]
-\includegraphics[width=0.82\textwidth]{image19.png}
+\includegraphics[width=1\textwidth]{image20.png}\\[1ex]
+\includegraphics[width=1\textwidth]{image19.png}
 \caption{Model Evaluation Code (Classification Report and Confusion Matrix)}
 \label{fig:evaluation_code}
 \end{figure}
@@ -1320,13 +1360,15 @@ Deploying the inference pipeline on live network interfaces revealed several ope
     \item \textbf{Internal Traffic Pre-Filtering:} Local network adapters regularly exchange operational frames such as IPv6 link-local messages, multicast DNS (mDNS), and address autoconfiguration packets. Because benchmark training datasets consist solely of routable host-to-host communications, evaluating these local infrastructure frames with machine learning models led to false positives (such as mDNS multicasts incorrectly flagged as Brute Force). A pre-prediction filter screens out loopback, link-local, multicast, and broadcast addresses before inference, allowing only routable unicast traffic to reach the classifier.
     \item \textbf{Dashboard Self-Traffic Exclusion:} The web user interface communicates with the FastAPI server over port 8000 using HTTP and WebSockets. To prevent feedback loops where dashboard communications generate captured packets that re-enter the feature extractor, all packets on destination or source port 8000 are automatically bypassed from flow tracking and alerting.
 \end{enumerate}
+
+\newpage
 \section{UI Design}
 
 To provide security operators with actionable, real-time threat intelligence, the system features a dedicated web-based monitoring dashboard. The interface is engineered using React JS for the interactive frontend and FastAPI for the asynchronous backend, with real-time bidirectional telemetry streamed over WebSocket endpoints to eliminate polling latency.
 
 \begin{figure}[H] 
 \centering
-\includegraphics[width=0.96\textwidth]{flow_prediction.png}
+\includegraphics[width=0.72\textwidth]{flow_prediction.png}
 \caption{Detailed Flow Inspection and Class Probability Distribution}
 \label{fig:flowwise_prediction}
 \end{figure}
@@ -1334,11 +1376,11 @@ As shown in Figure~\ref{fig:flowwise_prediction}, the dashboard incorporates an 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.90\textwidth]{dashboard.png}
+\includegraphics[width=1\textwidth]{dashboard1.png}
 \caption{Real-Time Network Intrusion Monitoring Dashboard}
 \label{fig:dashboard}
 \end{figure}
-The overarching real-time monitoring dashboard is depicted in Figure~\ref{fig:dashboard}. To support immediate situational awareness in security operations environments, the interface decomposes incoming network telemetry into modular functional zones. The top telemetry header summarizes active operational metrics at a glance, tracking total processed flows, benign count, aggregate detected anomalies, and categorical severity breakdowns (Critical, High, Medium). An active incident marquee positioned prominently at the top broadcasts incoming high-confidence threats (such as a 93.3\% confidence DoS event) as they occur, ensuring that sudden volumetric attacks are immediately visible to operational personnel.
+The overarching real-time monitoring dashboard is depicted in Figure~\ref{fig:dashboard}. To support immediate situational awareness in security operations environments, the interface decomposes incoming network telemetry into modular functional zones. The top telemetry header summarizes active operational metrics at a glance, tracking total processed flows, benign count, aggregate detected anomalies, and categorical severity breakdowns (Critical, High, Medium). An active incident marquee positioned prominently at the top broadcasts incoming high-confidence threats as they occur, ensuring that sudden volumetric attacks are immediately visible to operational personnel.
 
 Beneath the telemetry banner, the interface is organized into dual analytical panels: a prioritized Threat Alert Feed on the left, which records recent malicious flows alongside originating socket endpoints and ensemble confidence scores, and a categorical Severity Matrix and Attacker Distribution breakdown on the right, mapping class proportions across the five monitored categories. The lower section hosts an interactive Live Flow Stream table displaying real-time connection telemetry, including timestamps, sockets, protocol, packet volume, byte counts, duration, predicted class, and assigned severity rating. Operating over an asynchronous FastAPI WebSocket streaming channel with client-side circular buffering in React, the interface maintains update latencies below 15 milliseconds without browser DOM exhaustion, providing an operational tool for continuous threat monitoring.
 %------------------------------------------------------------------------------------------------------------------
@@ -1368,11 +1410,11 @@ Chapter 7 presents the version control history of the NIDAS project repository, 
 \end{verbatim}
 }
 
-The repository follows a single-branch linear development workflow on the \texttt{main} branch, illustrated in Figure~\ref{fig:git_repo}. Commits are ordered chronologically from the earliest training iteration to the final evaluation and refactoring run. The complete repository is available at the project's GitHub remote (\texttt{origin/main}).
+The repository follows a single-branch linear development workflow on the \texttt{main} branch, illustrated in Figure~\ref{fig:git_repo}. Commits are ordered chronologically from the earliest training iteration to the final evaluation and refactoring run.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{git.png}
+\includegraphics[width=0.85\textwidth]{repository.png}
 \caption{Git Repository}
 \label{fig:git_repo}
 \end{figure}

@@ -1,0 +1,1390 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 1200 1697"
+   role="img"
+   aria-labelledby="title desc"
+   version="1.1"
+   id="svg128"
+   sodipodi:docname="nidas_workflow.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview128"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4093294"
+     inkscape:cx="343.07097"
+     inkscape:cy="715.58856"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="stage-5" />
+  <title
+     id="title">Real-Time Network Intrusion Detection and Alert System (NIDAS) Workflow</title>
+  <desc
+     id="desc">Editable vector workflow diagram with six stages: data acquisition, preprocessing, model training, evaluation, real-time prediction, and alert output.</desc>
+  <defs
+     id="defs4">
+    <linearGradient
+       id="header"
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0">
+      <stop
+         offset="0"
+         stop-color="#0755a0"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#087fbe"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       id="panel"
+       x1="0"
+       y1="0"
+       x2="0"
+       y2="1">
+      <stop
+         offset="0"
+         stop-color="#f9fdff"
+         id="stop3" />
+      <stop
+         offset="1"
+         stop-color="#eaf7ff"
+         id="stop4" />
+    </linearGradient>
+    <marker
+       id="arrow"
+       markerWidth="10"
+       markerHeight="10"
+       refX="8"
+       refY="5"
+       orient="auto">
+      <path
+         d="M0,0 L10,5 L0,10 Z"
+         fill="#0879cf"
+         id="path4" />
+    </marker>
+    <style
+       id="style4">
+    text{font-family:Arial,Helvetica,sans-serif;fill:#064a91}
+    .section{fill:url(#panel);stroke:#0795ef;stroke-width:2.5}
+    .bar{fill:url(#header)}
+    .heading{font-size:28px;font-weight:700;fill:#fff}
+    .box{fill:#fff;fill-opacity:.78;stroke:#1598ef;stroke-width:2}
+    .boxhead{font-size:18px;font-weight:700}
+    .body{font-size:15.5px}
+    .small{font-size:14px}
+    .num{font-size:28px;font-weight:700;fill:#fff;text-anchor:middle}
+    .arrow{fill:none;stroke:#0879cf;stroke-width:2.5;marker-end:url(#arrow)}
+    .icon{fill:none;stroke:#07559c;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    .iconfill{fill:#07559c}
+  </style>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#panel"
+       id="linearGradient133"
+       x1="11.183111"
+       y1="2485.8748"
+       x2="11.183111"
+       y2="3110.2427"
+       gradientTransform="matrix(1.8559249,0,0,0.42514637,-0.14496657,283.01362)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#panel"
+       id="linearGradient134"
+       x1="10.063599"
+       y1="1129.3984"
+       x2="10.063599"
+       y2="1691.2624"
+       gradientTransform="matrix(2.0618866,0,0,0.48499274,-27.214283,0)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#header"
+       id="linearGradient135"
+       x1="4.482955"
+       y1="2694.205"
+       x2="240.04186"
+       y2="2694.205"
+       gradientTransform="matrix(4.9074773,0,0,0.20377068,-27.214283,0)"
+       gradientUnits="userSpaceOnUse" />
+    <marker
+       id="arrow-0"
+       markerWidth="10"
+       markerHeight="10"
+       refX="8"
+       refY="5"
+       orient="auto">
+      <path
+         d="M 0,0 10,5 0,10 Z"
+         fill="#0879cf"
+         id="path4-9" />
+    </marker>
+    <marker
+       id="arrow-8"
+       markerWidth="10"
+       markerHeight="10"
+       refX="8"
+       refY="5"
+       orient="auto">
+      <path
+         d="M 0,0 10,5 0,10 Z"
+         fill="#0879cf"
+         id="path4-2" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#panel"
+       id="linearGradient136"
+       x1="9.5908629"
+       y1="36.238919"
+       x2="9.5908629"
+       y2="571.70951"
+       gradientTransform="scale(2.1635175,0.46221026)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#header"
+       id="linearGradient137"
+       x1="4.482955"
+       y1="6580.927"
+       x2="240.04186"
+       y2="6580.927"
+       gradientTransform="scale(4.9074773,0.20377068)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#panel"
+       id="linearGradient138"
+       x1="9.5908629"
+       y1="2316.5864"
+       x2="9.5908629"
+       y2="2852.057"
+       gradientTransform="scale(2.1635175,0.46221026)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#header"
+       id="linearGradient139"
+       x1="4.482955"
+       y1="5260.8157"
+       x2="240.04186"
+       y2="5260.8157"
+       gradientTransform="scale(4.9074773,0.20377068)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#panel"
+       id="linearGradient140"
+       x1="8.7817108"
+       y1="1988.9419"
+       x2="8.7817108"
+       y2="2479.2364"
+       gradientTransform="scale(2.3628653,0.42321498)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#header"
+       id="linearGradient141"
+       x1="4.482955"
+       y1="4137.0034"
+       x2="240.04186"
+       y2="4137.0034"
+       gradientTransform="scale(4.9074773,0.20377068)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#panel"
+       id="linearGradient142"
+       x1="9.4542618"
+       y1="627.15764"
+       x2="9.4542618"
+       y2="1155.0016"
+       gradientTransform="scale(2.1947774,0.45562707)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#header"
+       id="linearGradient143"
+       x1="4.482955"
+       y1="1408.446"
+       x2="240.04186"
+       y2="1408.446"
+       gradientTransform="scale(4.9074773,0.20377068)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#header"
+       id="linearGradient144"
+       x1="4.482955"
+       y1="88.334591"
+       x2="240.04186"
+       y2="88.334591"
+       gradientTransform="scale(4.9074773,0.20377068)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <!-- Stage 1 -->
+  <g
+     id="stage-1"
+     transform="translate(0,36.28571)">
+    <rect
+       class="section"
+       x="22"
+       y="18"
+       width="1156"
+       height="245"
+       rx="18"
+       id="rect5"
+       style="fill:url(#linearGradient136)" />
+    <path
+       class="bar"
+       d="m 40,18 h 1120 q 18,0 18,18 V 66 H 22 V 36 Q 22,18 40,18 Z"
+       id="path5"
+       style="fill:url(#linearGradient144)" />
+    <circle
+       cx="54"
+       cy="42"
+       r="27"
+       fill="#063f82"
+       stroke="#6bd9ff"
+       stroke-width="3"
+       id="circle5" />
+    <text
+       class="num"
+       x="54"
+       y="52"
+       id="text5"
+       style="font-size:20.1587px">1</text>
+    <text
+       class="heading"
+       x="92"
+       y="51"
+       id="text6"
+       style="font-size:20.1587px">Data Acquisition</text>
+    <rect
+       class="box"
+       x="41.968449"
+       y="81.968452"
+       width="323.44379"
+       height="157.0631"
+       rx="9.3751831"
+       id="rect6" />
+    <text
+       class="boxhead"
+       x="49.404716"
+       y="119.09524"
+       id="text7"
+       style="font-size:20.1587px">CIC-IDS2017 + CSE-CIC-IDS2018</text>
+    <text
+       class="boxhead"
+       x="194.54749"
+       y="119.92857"
+       id="text8"
+       style="font-size:20.1587px" />
+    <text
+       class="body"
+       x="49.404724"
+       y="149.78577"
+       id="text10"
+       style="font-size:20.1587px">• 9,117,071 raw flow records</text>
+    <text
+       class="body"
+       x="49.404724"
+       y="173.80957"
+       id="text11"
+       style="font-size:20.1587px">• 77 numeric features + metadata</text>
+    <path
+       class="arrow"
+       d="m 366.67247,159 h 25"
+       id="path12" />
+    <rect
+       class="box"
+       x="391.78577"
+       y="82"
+       width="350"
+       height="157"
+       rx="10"
+       id="rect12" />
+    <text
+       class="boxhead"
+       x="410.3335"
+       y="120.09524"
+       id="text13"
+       style="font-size:20.1587px">Custom CICFlowMeter</text>
+    <text
+       class="body"
+       x="401.26208"
+       y="148.09521"
+       id="text14"
+       style="font-size:20.1587px">• Capture live packets (socket / pcap)</text>
+    <text
+       class="body"
+       x="401.26208"
+       y="172.09521"
+       id="text15"
+       style="font-size:20.1587px">• Extract 40 bidirectional flow features</text>
+    <text
+       class="body"
+       x="401.26208"
+       y="196.09521"
+       id="text16"
+       style="font-size:20.1587px">• Generate structured flow records</text>
+    <path
+       class="arrow"
+       d="m 740.7619,159 h 25"
+       id="path16" />
+    <rect
+       class="box"
+       x="771.3407"
+       y="82.015968"
+       width="366.50049"
+       height="156.96806"
+       rx="10.323957"
+       id="rect16" />
+    <text
+       class="boxhead"
+       x="780.16687"
+       y="111.02381"
+       id="text18"
+       style="font-size:20.1587px">Curated Benchmark Flow Records</text>
+    <text
+       class="boxhead"
+       x="804.3573"
+       y="133.0238"
+       id="text19"
+       style="font-size:20.1587px" />
+    <text
+       class="body"
+       x="777.14307"
+       y="151.95239"
+       id="text20"
+       style="font-size:20.1587px">• 1,799,905 flow records</text>
+    <text
+       class="body"
+       x="777.14307"
+       y="175.95239"
+       id="text21"
+       style="font-size:20.1587px">• 59.12% from 2018, 40.88% from 2017</text>
+    <text
+       class="body"
+       x="777.14307"
+       y="199.95239"
+       id="text22"
+       style="font-size:20.1587px">• Cross-environment traffic</text>
+    <path
+       class="arrow"
+       d="m 600,264 v 20"
+       id="path22" />
+  </g>
+  <!-- Stage 2 -->
+  <g
+     id="stage-2"
+     transform="translate(0,36.28571)">
+    <rect
+       class="section"
+       x="22"
+       y="287"
+       width="1156"
+       height="238"
+       rx="18"
+       id="rect22"
+       style="fill:url(#linearGradient142)" />
+    <path
+       class="bar"
+       d="m 40,287 h 1120 q 18,0 18,18 v 30 H 22 v -30 q 0,-18 18,-18 z"
+       id="path23"
+       style="fill:url(#linearGradient143)" />
+    <circle
+       cx="54"
+       cy="311"
+       r="27"
+       fill="#063f82"
+       stroke="#6bd9ff"
+       stroke-width="3"
+       id="circle23" />
+    <text
+       class="num"
+       x="54"
+       y="321"
+       id="text23"
+       style="font-size:20.1587px">2</text>
+    <text
+       class="heading"
+       x="92"
+       y="320"
+       id="text24"
+       style="font-size:20.1587px">Preprocessing</text>
+    <rect
+       class="box"
+       x="42"
+       y="351"
+       width="270"
+       height="151"
+       rx="10"
+       id="rect24" />
+    <text
+       class="boxhead"
+       x="60"
+       y="379"
+       id="text25"
+       style="font-size:20.1587px">Label</text>
+    <text
+       class="boxhead"
+       x="117.45241"
+       y="379.83337"
+       id="text26"
+       style="font-size:20.1587px">&amp; Class Selection</text>
+    <text
+       class="body"
+       x="60"
+       y="417.90479"
+       id="text27"
+       style="font-size:20.1587px">• Map variants to 5 classes</text>
+    <text
+       class="body"
+       x="60"
+       y="443.92859"
+       id="text28"
+       style="font-size:20.1587px">• Exclude Bot, Infiltration,</text>
+    <text
+       class="body"
+       x="76"
+       y="464.92859"
+       id="text29"
+       style="font-size:20.1587px">Web Attacks, Heartbleed</text>
+    <path
+       class="arrow"
+       d="m 313,426 h 18"
+       id="path29" />
+    <rect
+       class="box"
+       x="335.91281"
+       y="350.91281"
+       width="241.36272"
+       height="151.17435"
+       rx="8.3228521"
+       id="rect29" />
+    <text
+       class="boxhead"
+       x="354"
+       y="379"
+       id="text30"
+       style="font-size:20.1587px">Benign Subsampling</text>
+    <text
+       class="body"
+       x="341.90479"
+       y="417.90479"
+       id="text32"
+       style="font-size:20.1587px">• 15% benign (887,162)</text>
+    <text
+       class="body"
+       x="341.90479"
+       y="446.95239"
+       id="text33"
+       style="font-size:20.1587px">• Total attack (912,743)</text>
+    <text
+       class="body"
+       x="341.90479"
+       y="476"
+       id="text34"
+       style="font-size:20.1587px">• Total: 1,799,905 records</text>
+    <path
+       class="arrow"
+       d="m 578.61904,426 h 18"
+       id="path34" />
+    <rect
+       class="box"
+       x="601.61914"
+       y="351"
+       width="210"
+       height="151"
+       rx="10"
+       id="rect34" />
+    <text
+       class="boxhead"
+       x="620.61914"
+       y="384"
+       id="text35"
+       style="font-size:20.1587px">Scaling</text>
+    <text
+       class="body"
+       x="620.61914"
+       y="418"
+       id="text36"
+       style="font-size:20.1587px">• RobustScaler</text>
+    <text
+       class="body"
+       x="620.61914"
+       y="442"
+       id="text37"
+       style="font-size:20.1587px">• Fit on training split</text>
+    <path
+       class="arrow"
+       d="m 812.61904,426 h 18"
+       id="path37" />
+    <rect
+       class="box"
+       x="835.68158"
+       y="351.06241"
+       width="307.27698"
+       height="150.87514"
+       rx="11.296948"
+       id="rect37" />
+    <text
+       class="boxhead"
+       x="844.54773"
+       y="379"
+       id="text38"
+       style="font-size:20.1587px">Feature &amp; Sample Weighting</text>
+    <text
+       class="body"
+       x="847.57153"
+       y="417.90479"
+       id="text40"
+       style="font-size:20.1587px">• Feature weights: 3.0 / 2.0 / 1.0</text>
+    <text
+       class="body"
+       x="847.57153"
+       y="440.90479"
+       id="text41"
+       style="font-size:20.1587px">• 6 high, 11 medium, others</text>
+    <text
+       class="body"
+       x="847.57153"
+       y="463.90479"
+       id="text42"
+       style="font-size:20.1587px">• Balanced sample weights</text>
+    <path
+       class="arrow"
+       d="m 600,526 v 20"
+       id="path42" />
+  </g>
+  <!-- Stage 3 -->
+  <g
+     id="stage-3"
+     transform="translate(29.501534,37.358493)">
+    <rect
+       class="section"
+       x="-5.2142849"
+       y="549"
+       width="1156"
+       height="270"
+       rx="18"
+       id="rect42"
+       style="fill:url(#linearGradient134)" />
+    <path
+       class="bar"
+       d="M 12.785719,549 H 1132.7858 q 18,0 18,18 v 30 H -5.2142839 v -30 q 0,-18 18.0000029,-18 z"
+       id="path43"
+       style="fill:url(#linearGradient135)" />
+    <circle
+       cx="26.785702"
+       cy="573"
+       r="27"
+       fill="#063f82"
+       stroke="#6bd9ff"
+       stroke-width="3"
+       id="circle43" />
+    <text
+       class="num"
+       x="26.785702"
+       y="583"
+       id="text43"
+       style="font-size:20.1587px">3</text>
+    <text
+       class="heading"
+       x="64.785698"
+       y="582"
+       id="text44"
+       style="font-size:20.1587px">Model Training</text>
+    <rect
+       class="box"
+       x="99.452415"
+       y="616"
+       width="235"
+       height="174"
+       rx="10"
+       id="rect44" />
+    <text
+       class="boxhead"
+       x="117.95238"
+       y="649"
+       id="text45"
+       style="font-size:20.1587px">Training Set</text>
+    <text
+       class="boxhead"
+       x="117.95238"
+       y="672"
+       id="text46"
+       style="font-size:20.1587px">(80% stratified)</text>
+    <text
+       class="body"
+       x="117.95238"
+       y="705"
+       id="text47"
+       style="font-size:20.1587px">• ~1.44 million records</text>
+    <text
+       class="body"
+       x="117.95238"
+       y="731"
+       id="text48"
+       style="font-size:20.1587px">• random_state = 42</text>
+    <rect
+       class="box"
+       x="359.23618"
+       y="612.76013"
+       width="173.61206"
+       height="82.116936"
+       rx="5.9866238"
+       id="rect48" />
+    <text
+       class="boxhead"
+       x="366"
+       y="637.9762"
+       id="text50"
+       style="font-size:20.1587px">Random Forest</text>
+    <text
+       class="body"
+       x="362.9762"
+       y="659.9762"
+       id="text51"
+       style="font-size:20.1587px"><tspan
+         sodipodi:role="line"
+         id="tspan128"
+         x="362.9762"
+         y="659.9762">• 200 estimators</tspan><tspan
+         sodipodi:role="line"
+         id="tspan129"
+         x="362.9762"
+         y="685.17456">• max depth 10</tspan></text>
+    <rect
+       class="box"
+       x="359.23618"
+       y="707.19458"
+       width="173.61206"
+       height="84.169861"
+       rx="5.9866238"
+       id="rect52" />
+    <text
+       class="boxhead"
+       x="366"
+       y="729.9762"
+       id="text54"
+       style="font-size:20.1587px">XGBoost</text>
+    <text
+       class="body"
+       x="362.9762"
+       y="755"
+       id="text55"
+       style="font-size:20.1587px"><tspan
+         sodipodi:role="line"
+         id="tspan133"
+         x="362.9762"
+         y="755">• 300 estimators</tspan><tspan
+         sodipodi:role="line"
+         x="362.9762"
+         y="780.19836"
+         id="tspan135">• max_depth 6</tspan></text>
+    <path
+       class="arrow"
+       d="m 538.57142,701 h 19"
+       id="path56" />
+    <rect
+       class="box"
+       x="562.57153"
+       y="646"
+       width="235"
+       height="111"
+       rx="10"
+       id="rect56" />
+    <text
+       class="boxhead"
+       x="572.11926"
+       y="673.9762"
+       id="text58"
+       style="font-size:20.1587px">Soft-Voting Ensemble</text>
+    <text
+       class="boxhead"
+       x="626.54773"
+       y="695.9762"
+       id="text59"
+       style="font-size:20.1587px" />
+    <text
+       class="body"
+       x="572.11926"
+       y="700.78577"
+       id="text60"
+       style="font-size:20.1587px">• RF + XGBoost</text>
+    <text
+       class="body"
+       x="572.11926"
+       y="723.80957"
+       id="text61"
+       style="font-size:20.1587px">• Average probabilities</text>
+    <path
+       class="arrow"
+       d="m 798.57142,701 h 19"
+       id="path61" />
+    <rect
+       class="box"
+       x="822.57153"
+       y="616"
+       width="279"
+       height="174"
+       rx="10"
+       id="rect61" />
+    <text
+       class="boxhead"
+       x="843.09546"
+       y="649"
+       id="text63"
+       style="font-size:20.1587px">Model Artifacts</text>
+    <text
+       class="body"
+       x="843.09546"
+       y="679"
+       id="text64"
+       style="font-size:20.1587px">• ensemble_model.pkl</text>
+    <text
+       class="body"
+       x="843.09546"
+       y="703"
+       id="text65"
+       style="font-size:20.1587px">• scaler.pkl</text>
+    <text
+       class="body"
+       x="843.09546"
+       y="727"
+       id="text66"
+       style="font-size:20.1587px">• label_encoder.pkl</text>
+    <text
+       class="body"
+       x="843.09546"
+       y="751"
+       id="text67"
+       style="font-size:20.1587px">• feature_weights.pkl</text>
+    <path
+       class="arrow"
+       d="m 569.7619,820 v 20"
+       id="path67" />
+    <path
+       class="arrow"
+       d="m 335.57571,651.26825 h 19"
+       id="path135-8"
+       style="fill:none;stroke:#0879cf;stroke-width:2.5;marker-end:url(#arrow-0)" />
+    <path
+       class="arrow"
+       d="m 336.1121,753.18264 h 19"
+       id="path135-5"
+       style="fill:none;stroke:#0879cf;stroke-width:2.5;marker-end:url(#arrow-8)" />
+  </g>
+  <!-- Stage 4 -->
+  <g
+     id="stage-4"
+     transform="translate(0,36.28571)">
+    <rect
+       class="section"
+       x="22"
+       y="843"
+       width="1156"
+       height="205"
+       rx="18"
+       id="rect67"
+       style="fill:url(#linearGradient140)" />
+    <path
+       class="bar"
+       d="m 40,843 h 1120 q 18,0 18,18 v 30 H 22 v -30 q 0,-18 18,-18 z"
+       id="path68"
+       style="fill:url(#linearGradient141)" />
+    <circle
+       cx="54"
+       cy="867"
+       r="27"
+       fill="#063f82"
+       stroke="#6bd9ff"
+       stroke-width="3"
+       id="circle68" />
+    <text
+       class="num"
+       x="54"
+       y="877"
+       id="text68"
+       style="font-size:20.1587px">4</text>
+    <text
+       class="heading"
+       x="92"
+       y="876"
+       id="text69"
+       style="font-size:20.1587px">Evaluation</text>
+    <rect
+       class="box"
+       x="42"
+       y="908"
+       width="300"
+       height="116"
+       rx="10"
+       id="rect69" />
+    <g
+       transform="translate(61,929)"
+       class="icon"
+       id="g70" />
+    <text
+       class="boxhead"
+       x="58.523781"
+       y="938"
+       id="text70"
+       style="font-size:20.1587px">Testing Set (20%)</text>
+    <text
+       class="body"
+       x="58.523781"
+       y="968"
+       id="text71"
+       style="font-size:20.1587px">• 394,168 unseen records</text>
+    <path
+       class="arrow"
+       d="m 343,966 h 20"
+       id="path71" />
+    <rect
+       class="box"
+       x="368"
+       y="908"
+       width="465"
+       height="116"
+       rx="10"
+       id="rect71" />
+    <text
+       class="boxhead"
+       x="390"
+       y="936"
+       id="text72"
+       style="font-size:20.1587px">Evaluation Metrics</text>
+    <text
+       class="body"
+       x="390"
+       y="963"
+       id="text73"
+       style="font-size:20.1587px">• Accuracy • Precision</text>
+    <text
+       class="body"
+       x="390"
+       y="986"
+       id="text74"
+       style="font-size:20.1587px">• Recall • F1-score</text>
+    <text
+       class="body"
+       x="607.88098"
+       y="963"
+       id="text75"
+       style="font-size:20.1587px">• False Positive Rate</text>
+    <text
+       class="body"
+       x="607.88098"
+       y="986"
+       id="text76"
+       style="font-size:20.1587px">• False Negative Rate</text>
+    <path
+       class="arrow"
+       d="m 834,966 h 20"
+       id="path76" />
+    <rect
+       class="box"
+       x="859"
+       y="908"
+       width="297"
+       height="116"
+       rx="10"
+       id="rect76" />
+    <text
+       class="boxhead"
+       x="881"
+       y="938"
+       id="text77"
+       style="font-size:20.1587px">Model Comparison</text>
+    <text
+       class="body"
+       x="881"
+       y="961.95239"
+       id="text78"
+       style="font-size:20.1587px">• Random Forest</text>
+    <text
+       class="body"
+       x="881"
+       y="984.95239"
+       id="text79"
+       style="font-size:20.1587px">• XGBoost</text>
+    <text
+       class="body"
+       x="881"
+       y="1007.9524"
+       id="text80"
+       style="font-size:20.1587px">• Soft-Voting Ensemble</text>
+    <path
+       class="arrow"
+       d="m 600,1049 v 20"
+       id="path80" />
+  </g>
+  <!-- Stage 5 -->
+  <g
+     id="stage-5"
+     transform="translate(-4.576617e-8,36.28571)">
+    <rect
+       class="section"
+       x="22"
+       y="1072"
+       width="1156"
+       height="245"
+       rx="18"
+       id="rect80"
+       style="fill:url(#linearGradient138)" />
+    <path
+       class="bar"
+       d="m 40,1072 h 1120 q 18,0 18,18 v 30 H 22 v -30 q 0,-18 18,-18 z"
+       id="path81"
+       style="fill:url(#linearGradient139)" />
+    <circle
+       cx="54"
+       cy="1096"
+       r="27"
+       fill="#063f82"
+       stroke="#6bd9ff"
+       stroke-width="3"
+       id="circle81" />
+    <text
+       class="num"
+       x="54"
+       y="1106"
+       id="text81"
+       style="font-size:20.1587px">5</text>
+    <text
+       class="heading"
+       x="92"
+       y="1105"
+       id="text82"
+       style="font-size:20.1587px">Real-Time Prediction</text>
+    <rect
+       class="box"
+       x="38.936863"
+       y="1136.9716"
+       width="164.82025"
+       height="153.05681"
+       rx="9.4183006"
+       id="rect82" />
+    <text
+       class="boxhead"
+       x="42.880943"
+       y="1165"
+       id="text83"
+       style="font-size:20.1587px">Live Traffic</text>
+    <text
+       class="body"
+       x="42.880943"
+       y="1194"
+       id="text84"
+       style="font-size:20.1587px">• Packet capture</text>
+    <text
+       class="body"
+       x="56.880943"
+       y="1217"
+       id="text85"
+       style="font-size:20.1587px">(socket / pcap)</text>
+    <rect
+       class="box"
+       x="220.09476"
+       y="1137.0271"
+       width="195.21213"
+       height="152.94571"
+       rx="10.552008"
+       id="rect85" />
+    <path
+       class="arrow"
+       d="m 205.90476,1212 h 15"
+       id="path85" />
+    <text
+       class="boxhead"
+       x="223.76196"
+       y="1165"
+       id="text86"
+       style="font-size:20.1587px">CICFlowMeter</text>
+    <text
+       class="body"
+       x="223.76196"
+       y="1194"
+       id="text87"
+       style="font-size:20.1587px">• Reassemble</text>
+    <text
+       class="body"
+       x="237.76196"
+       y="1217"
+       id="text88"
+       style="font-size:20.1587px">bidirectional flows</text>
+    <text
+       class="body"
+       x="223.76196"
+       y="1245"
+       id="text89"
+       style="font-size:20.1587px">• Extract 40 features</text>
+    <rect
+       class="box"
+       x="426.90961"
+       y="1137.0555"
+       width="172.88483"
+       height="152.88878"
+       rx="11.153859"
+       id="rect89" />
+    <path
+       class="arrow"
+       d="m 411.90476,1212 h 15"
+       id="path89" />
+    <text
+       class="boxhead"
+       x="429.76196"
+       y="1165"
+       id="text90"
+       style="font-size:20.1587px">Feature Vector</text>
+    <text
+       class="body"
+       x="429.76196"
+       y="1194"
+       id="text91"
+       style="font-size:20.1587px">• Align 40 features</text>
+    <text
+       class="body"
+       x="443.76196"
+       y="1217"
+       id="text92"
+       style="font-size:20.1587px">in model order</text>
+    <rect
+       class="box"
+       x="615.26337"
+       y="1136.9712"
+       width="179.63237"
+       height="153.05745"
+       rx="9.4543352"
+       id="rect92" />
+    <path
+       class="arrow"
+       d="m 600,1212 h 15"
+       id="path92" />
+    <text
+       class="boxhead"
+       x="620.88098"
+       y="1165"
+       id="text93"
+       style="font-size:20.1587px">Preprocessing</text>
+    <text
+       class="body"
+       x="620.88098"
+       y="1194"
+       id="text94"
+       style="font-size:20.1587px">• Handle NaN / Inf</text>
+    <text
+       class="body"
+       x="620.88098"
+       y="1217"
+       id="text95"
+       style="font-size:20.1587px">• RobustScaler</text>
+    <text
+       class="body"
+       x="620.88098"
+       y="1240"
+       id="text96"
+       style="font-size:20.1587px">• Feature weights</text>
+    <rect
+       class="box"
+       x="814.93616"
+       y="1137.0422"
+       width="162.75061"
+       height="152.91574"
+       rx="10.850041"
+       id="rect96" />
+    <path
+       class="arrow"
+       d="m 794.19812,1213.2069 h 15"
+       id="path96" />
+    <text
+       class="boxhead"
+       x="822.80957"
+       y="1165"
+       id="text97"
+       style="font-size:20.1587px">RF + XGBoost</text>
+    <text
+       class="body"
+       x="819.78577"
+       y="1194"
+       id="text98"
+       style="font-size:20.1587px">• Soft voting</text>
+    <text
+       class="body"
+       x="819.78577"
+       y="1217"
+       id="text99"
+       style="font-size:20.1587px">• Average class</text>
+    <text
+       class="body"
+       x="833.78577"
+       y="1240"
+       id="text100"
+       style="font-size:20.1587px">probabilities</text>
+    <rect
+       class="box"
+       x="989.30389"
+       y="1137.0658"
+       width="175.00201"
+       height="152.86859"
+       rx="11.363768"
+       id="rect100" />
+    <path
+       class="arrow"
+       d="m 975.95238,1212 h 15"
+       id="path100" />
+    <text
+       class="boxhead"
+       x="1002.881"
+       y="1165"
+       id="text101"
+       style="font-size:20.1587px">Prediction</text>
+    <text
+       class="body"
+       x="990.78577"
+       y="1194"
+       id="text102"
+       style="font-size:20.1587px">• Class label</text>
+    <text
+       class="body"
+       x="1004.7858"
+       y="1217"
+       id="text103"
+       style="font-size:20.1587px">Normal / attack</text>
+    <text
+       class="body"
+       x="990.78577"
+       y="1245"
+       id="text104"
+       style="font-size:20.1587px">• Confidence score</text>
+    <path
+       class="arrow"
+       d="m 600,1318 v 20"
+       id="path104" />
+  </g>
+  <!-- Stage 6 -->
+  <g
+     id="stage-6"
+     transform="translate(0,36.28571)">
+    <rect
+       class="section"
+       x="21.86035"
+       y="1340.8604"
+       width="1156.2793"
+       height="263.47562"
+       rx="18.004349"
+       id="rect104"
+       style="fill:url(#linearGradient133)" />
+    <path
+       class="bar"
+       d="m 40,1341 h 1120 q 18,0 18,18 v 30 H 22 v -30 q 0,-18 18,-18 z"
+       id="path105"
+       style="fill:url(#linearGradient137)" />
+    <circle
+       cx="54"
+       cy="1365"
+       r="27"
+       fill="#063f82"
+       stroke="#6bd9ff"
+       stroke-width="3"
+       id="circle105" />
+    <text
+       class="num"
+       x="54"
+       y="1375"
+       id="text105"
+       style="font-size:20.1587px">6</text>
+    <text
+       class="heading"
+       x="92"
+       y="1374"
+       id="text106"
+       style="font-size:20.1587px">Alert &amp; Output</text>
+    <rect
+       class="box"
+       x="41.8643"
+       y="1411.2283"
+       width="235.05724"
+       height="169.83238"
+       rx="10.002436"
+       id="rect106" />
+    <text
+       class="boxhead"
+       x="61.499969"
+       y="1443"
+       id="text107"
+       style="font-size:20.1587px">Prediction Result</text>
+    <text
+       class="body"
+       x="61.499969"
+       y="1467.9286"
+       id="text108"
+       style="font-size:20.1587px">• Normal Traffic</text>
+    <text
+       class="body"
+       x="61.499969"
+       y="1492.9286"
+       id="text109"
+       style="font-size:20.1587px">• Attack</text>
+    <path
+       class="arrow"
+       d="m 278,1500.8096 h 20"
+       id="path109" />
+    <rect
+       class="box"
+       x="302.92789"
+       y="1411.2283"
+       width="270.06577"
+       height="169.83238"
+       rx="10.002436"
+       id="rect109" />
+    <text
+       class="boxhead"
+       x="322.50012"
+       y="1443"
+       id="text111"
+       style="font-size:20.1587px">Assign Severity</text>
+    <text
+       class="body"
+       x="322.50012"
+       y="1467.9286"
+       id="text112"
+       style="font-size:20.1587px">• Critical: DDoS, DoS</text>
+    <text
+       class="body"
+       x="322.50012"
+       y="1492.9286"
+       id="text113"
+       style="font-size:20.1587px">• High: Brute Force</text>
+    <text
+       class="body"
+       x="322.50012"
+       y="1517.9286"
+       id="text114"
+       style="font-size:20.1587px">• Medium: Port Scan</text>
+    <path
+       class="arrow"
+       d="m 574,1500.8096 h 20"
+       id="path114" />
+    <rect
+       class="box"
+       x="599"
+       y="1411.2283"
+       width="270.06577"
+       height="169.83238"
+       rx="10.002436"
+       id="rect114" />
+    <text
+       class="boxhead"
+       x="617.50012"
+       y="1433.9286"
+       id="text116"
+       style="font-size:20.1587px">Alert Log</text>
+    <text
+       class="body"
+       x="708.21423"
+       y="1434.762"
+       id="text117"
+       style="font-size:20.1587px">(alert_log.csv)</text>
+    <text
+       class="body"
+       x="617.50012"
+       y="1463.762"
+       id="text118"
+       style="font-size:20.1587px">• Timestamp</text>
+    <text
+       class="body"
+       x="617.50012"
+       y="1486.762"
+       id="text119"
+       style="font-size:20.1587px">• Attack category &amp; severity</text>
+    <text
+       class="body"
+       x="617.50012"
+       y="1509.762"
+       id="text120"
+       style="font-size:20.1587px">• Confidence score</text>
+    <text
+       class="body"
+       x="617.50012"
+       y="1532.762"
+       id="text121"
+       style="font-size:20.1587px">• RF / XGBoost predictions</text>
+    <text
+       class="body"
+       x="617.50012"
+       y="1555.762"
+       id="text122"
+       style="font-size:20.1587px">• Alert trigger flag</text>
+    <path
+       class="arrow"
+       d="m 870,1500.8096 h 20"
+       id="path122" />
+    <rect
+       class="box"
+       x="895.08167"
+       y="1411.2379"
+       width="268.01752"
+       height="169.81317"
+       rx="10.268867"
+       id="rect122" />
+    <text
+       class="boxhead"
+       x="906.40491"
+       y="1433.9286"
+       id="text123"
+       style="font-size:20.1587px">Interface</text>
+    <text
+       class="body"
+       x="900.88098"
+       y="1464.3097"
+       id="text126"
+       style="font-size:20.1587px">• Alert banners</text>
+    <text
+       class="body"
+       x="900.88098"
+       y="1493.3097"
+       id="text127"
+       style="font-size:20.1587px">• Future FastAPI WebSocket</text>
+    <text
+       class="body"
+       x="914.88098"
+       y="1516.3097"
+       id="text128"
+       style="font-size:20.1587px">and React dashboard</text>
+  </g>
+  <metadata
+     id="metadata133">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Real-Time Network Intrusion Detection and Alert System (NIDAS) Workflow</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
