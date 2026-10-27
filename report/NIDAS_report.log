@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.13)  25 OCT 2026 01:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.13)  27 OCT 2026 16:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -471,7 +471,7 @@ Package caption Info: End \AtBeginDocument code.
 File: figures/mace_logo.png Graphic file (type png)
 <use figures/mace_logo.png>
 Package pdftex.def Info: figures/mace_logo.png  used on input line 190.
-(pdftex.def)             Requested size: 108.90727pt x 113.81102pt.
+(pdftex.def)             Requested size: 103.45868pt x 108.12054pt.
 [1
 
 {c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc} <./figures/mace_logo.png>]
@@ -833,18 +833,18 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 10231 strings out of 469472
- 165037 string characters out of 5469218
+ 10214 strings out of 469472
+ 164853 string characters out of 5469218
  607391 words of memory out of 5000000
- 38300 multiletter control sequences out of 15000+600000
- 728127 words of font info for 412 fonts, out of 8000000 for 9000
+ 38296 multiletter control sequences out of 15000+600000
+ 723298 words of font info for 403 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  67i,14n,77p,1128b,585s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on NIDAS_report.pdf (74 pages, 3263535 bytes).
+Output written on NIDAS_report.pdf (74 pages, 3263397 bytes).
 PDF statistics:
  388 PDF objects out of 1000 (max. 8388607)
  232 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 104594 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 98450 words of extra memory for PDF output out of 106986 (max. 10000000)
 
